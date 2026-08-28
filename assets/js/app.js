@@ -58,7 +58,10 @@ class App {
         }
       }, 400);
 
-      // 7. Yeniden boyutlandırma dinleyicisi
+      // 7. Önemli Uyarı / Konsept Tasarım Modalını Başlat
+      this.initNoticeModal();
+
+      // 8. Yeniden boyutlandırma dinleyicisi
       this.initResizeHandler(pdfData);
 
     } catch (error) {
@@ -242,6 +245,36 @@ class App {
       7: 'Uzaktan Eğitim Sistemi (Kampüs)'
     };
     return topics[pageNum] || `Bölüm ${pageNum}`;
+  }
+
+  initNoticeModal() {
+    const noticeModal = document.getElementById('notice-modal');
+    const confirmBtn = document.getElementById('btn-notice-confirm');
+
+    if (!noticeModal) return;
+
+    // Show modal once the page is ready
+    noticeModal.classList.add('active');
+
+    const closeNotice = () => {
+      noticeModal.classList.remove('active');
+    };
+
+    if (confirmBtn) {
+      confirmBtn.addEventListener('click', closeNotice);
+    }
+
+    noticeModal.addEventListener('click', (e) => {
+      if (e.target === noticeModal) {
+        closeNotice();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && noticeModal.classList.contains('active')) {
+        closeNotice();
+      }
+    });
   }
 
   initResizeHandler(pdfData) {

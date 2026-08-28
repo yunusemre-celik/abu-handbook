@@ -16,11 +16,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheets (Cache-Busting Güvencesi) -->
-  <link rel="stylesheet" href="./assets/css/style.css?v=2.1.0">
-  <link rel="stylesheet" href="./assets/css/flipbook.css?v=2.1.0">
-  <link rel="stylesheet" href="./assets/css/hotspots.css?v=2.1.0">
-  <link rel="stylesheet" href="./assets/css/modal.css?v=2.1.0">
-  <link rel="stylesheet" href="./assets/css/toolbar.css?v=2.1.0">
+  <link rel="stylesheet" href="./assets/css/style.css?v=2.2.0">
+  <link rel="stylesheet" href="./assets/css/flipbook.css?v=2.2.0">
+  <link rel="stylesheet" href="./assets/css/hotspots.css?v=2.2.0">
+  <link rel="stylesheet" href="./assets/css/modal.css?v=2.2.0">
+  <link rel="stylesheet" href="./assets/css/toolbar.css?v=2.2.0">
 
   <!-- External Libraries (CDN) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -446,9 +446,73 @@
         </div>
       </div>
     </div>
+
+    <!-- 9. Önemli Bilgilendirme / Konsept Tasarım Pop-up Modalı -->
+    <div id="notice-modal" class="notice-modal" role="dialog" aria-modal="true" aria-labelledby="notice-modal-title">
+      <div class="notice-card">
+        <div class="notice-header">
+          <div class="notice-icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="notice-title-group">
+            <span class="notice-tag">Önemli Bilgilendirme</span>
+            <h2 id="notice-modal-title" class="notice-title">Konsept Tasarım ve Kullanım Uyarısı</h2>
+          </div>
+        </div>
+
+        <div class="notice-body">
+          <div class="notice-item alert-item">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <div class="notice-item-text">
+              <strong>Konsept ve Portföy Prototipidir</strong>
+              <p>Bu web uygulaması, Antalya Bilim Üniversitesi için hazırlanmış resmi olmayan, modern bir <strong>dijital öğrenci kataloğu konsepti ve frontend prototipidir</strong>.</p>
+            </div>
+          </div>
+
+          <div class="notice-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <div class="notice-item-text">
+              <strong>Resmi Sistem Yönlendirmeleri</strong>
+              <p>Sayfada yer alan OBS, LMS, Webmail ve RMP bağlantıları doğrudan üniversitenin resmi güvenli sunucularına yönlendirmektedir.</p>
+            </div>
+          </div>
+
+          <div class="notice-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <div class="notice-item-text">
+              <strong>Geliştirici Künyesi</strong>
+              <p>Arayüz mimarisi, interaktif sayfa çevirme motoru ve tüm web entegrasyonu <strong>Yunus Emre Çelik</strong> tarafından geliştirilmiştir.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice-footer">
+          <button id="btn-notice-confirm" class="btn-notice-confirm" aria-label="Anladım ve Kapat">
+            <span>Anladım</span>
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Ana Uygulama Modülü -->
-  <script type="module" src="./assets/js/app.js?v=2.1.0"></script>
+  <script type="module" src="./assets/js/app.js?v=2.2.0"></script>
 </body>
 </html>
