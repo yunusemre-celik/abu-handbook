@@ -461,4 +461,42 @@
   .nav-arrow {
     display: none;
   }
+  .cover-content {
+    padding: 0.75rem 0.6rem;
+  }
+  .cover-crest {
+    width: 32px;
+    height: 32px;
+  }
+  .cover-uni-title {
+    font-size: 0.8rem;
+  }
+  .cover-handbook-title {
+    font-size: 1.05rem;
+  }
+  .cover-badge-tag {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
+  .cover-video-window {
+    margin: 0.25rem auto;
+  }
+  .cover-footer {
+    padding-top: 0.35rem;
+    font-size: 0.68rem;
+  }
+  .back-cover-content {
+    padding: 1.25rem 0.85rem;
+  }
+  .back-cover-crest {
+    width: 46px;
+    height: 46px;
+  }
+  .back-cover-uni-title {
+    font-size: 0.95rem;
+  }
+  .back-cover-site-box {
+    padding: 0.75rem 1rem;
+    max-width: 260px;
+  }
 }

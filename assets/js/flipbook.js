@@ -1,5 +1,6 @@
 /**
  * Flipbook Controller - Wraps and configures StPageFlip
+ * Fully responsive for Desktop, Tablet, and Mobile
  */
 
 import { soundManager } from './sound-manager.js';
@@ -12,6 +13,9 @@ export class FlipbookController {
     this.currentPage = 0;
     this.totalPages = 0;
     this.onPageChangeCallbacks = [];
+    this.pagesData = [];
+    this.baseWidth = 595;
+    this.baseHeight = 842;
   }
 
   init(pagesData, baseWidth, baseHeight) {
@@ -19,55 +23,22 @@ export class FlipbookController {
       throw new Error('StPageFlip kütüphanesi yüklenemedi.');
     }
 
+    this.pagesData = pagesData;
     this.totalPages = pagesData.length;
+    this.baseWidth = (typeof baseWidth === 'number' && baseWidth > 0) ? baseWidth : 595;
+    this.baseHeight = (typeof baseHeight === 'number' && baseHeight > 0) ? baseHeight : 842;
 
-    // Safe base dimensions (A4 fallback if missing)
-    const safeBaseWidth = (typeof baseWidth === 'number' && baseWidth > 0) ? baseWidth : 595;
-    const safeBaseHeight = (typeof baseHeight === 'number' && baseHeight > 0) ? baseHeight : 842;
-    const aspectRatio = safeBaseWidth / safeBaseHeight;
-
-    // Dynamic prominent sizing to fill viewport with high readability
-    const winW = window.innerWidth;
-    const winH = window.innerHeight;
-    const isMobile = winW <= 768;
-
-    let singlePageWidth, singlePageHeight;
-
-    if (isMobile) {
-      // Single page portrait mode for mobile
-      const targetWidth = Math.min(winW - 20, 600);
-      singlePageWidth = targetWidth;
-      singlePageHeight = singlePageWidth / aspectRatio;
-    } else {
-      // Prominent double-page spread for desktop / tablets
-      // Target 80% to 86% of viewport height (minimum 700px on desktop)
-      const targetHeight = Math.max(700, Math.min(winH * 0.84, 940));
-      let bookHeight = targetHeight;
-      let bookWidth = (bookHeight * aspectRatio) * 2;
-
-      // Ensure it leaves comfortable breathing room for sidebar navigation arrows
-      const maxAllowedWidth = Math.min(winW - 160, 1560);
-      if (bookWidth > maxAllowedWidth) {
-        bookWidth = maxAllowedWidth;
-        bookHeight = (bookWidth / 2) / aspectRatio;
-      }
-
-      singlePageWidth = bookWidth / 2;
-      singlePageHeight = bookHeight;
-    }
+    const { width, height, isMobile } = this.calculateDimensions();
 
     const minW = 100;
     const maxW = 3000;
     const minH = 100;
     const maxH = 3000;
 
-    const finalWidth = Math.max(minW, Math.min(maxW, Math.round(singlePageWidth)));
-    const finalHeight = Math.max(minH, Math.min(maxH, Math.round(singlePageHeight)));
-
     // Initialize StPageFlip
     this.pageFlip = new window.St.PageFlip(this.containerEl, {
-      width: finalWidth,
-      height: finalHeight,
+      width: Math.max(minW, Math.min(maxW, width)),
+      height: Math.max(minH, Math.min(maxH, height)),
       size: 'fixed',
       minWidth: minW,
       maxWidth: maxW,
@@ -79,9 +50,9 @@ export class FlipbookController {
       usePortrait: isMobile,
       autoSize: true,
       drawShadow: true,
-      flippingTime: 650,
+      flippingTime: 600,
       useMouseEvents: true,
-      swipeDistance: 25
+      swipeDistance: 20
     });
 
     // Load DOM elements
@@ -97,6 +68,73 @@ export class FlipbookController {
 
     // Initial page notification
     this.notifyPageChange(0);
+
+    // Handle Orientation & Window Resize dynamically
+    this.initResponsiveListener();
+  }
+
+  calculateDimensions() {
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    const isMobile = winW <= 768;
+    const aspectRatio = this.baseWidth / this.baseHeight;
+
+    let singlePageWidth, singlePageHeight;
+
+    if (isMobile) {
+      // Mobile Single Page Portrait: Fits comfortably on screen with header & toolbar room
+      const maxAvailableWidth = winW - 16;
+      const maxAvailableHeight = Math.max(360, winH - 150);
+
+      let pageH = maxAvailableHeight;
+      let pageW = pageH * aspectRatio;
+
+      if (pageW > maxAvailableWidth) {
+        pageW = maxAvailableWidth;
+        pageH = pageW / aspectRatio;
+      }
+
+      singlePageWidth = Math.round(pageW);
+      singlePageHeight = Math.round(pageH);
+    } else {
+      // Desktop / Tablet Double-Page Spread
+      const targetHeight = Math.max(680, Math.min(winH * 0.84, 940));
+      let bookHeight = targetHeight;
+      let bookWidth = (bookHeight * aspectRatio) * 2;
+
+      const maxAllowedWidth = Math.min(winW - 140, 1560);
+      if (bookWidth > maxAllowedWidth) {
+        bookWidth = maxAllowedWidth;
+        bookHeight = (bookWidth / 2) / aspectRatio;
+      }
+
+      singlePageWidth = Math.round(bookWidth / 2);
+      singlePageHeight = Math.round(bookHeight);
+    }
+
+    return {
+      width: singlePageWidth,
+      height: singlePageHeight,
+      isMobile
+    };
+  }
+
+  initResponsiveListener() {
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (!this.pageFlip) return;
+        const { width, height } = this.calculateDimensions();
+        try {
+          if (typeof this.pageFlip.update === 'function') {
+            this.pageFlip.update();
+          }
+        } catch (e) {
+          // ignore resize sync notices
+        }
+      }, 250);
+    });
   }
 
   onPageChange(callback) {

@@ -723,11 +723,12 @@ html, body {
 }
 
 /* ==========================================================================
-   7. MOBİL UYUMLULUK
+   7. MOBİL & TABLET DUYARLILIK (RESPONSIVE DESIGN)
    ========================================================================== */
 @media (max-width: 992px) {
   .footer-row {
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
   .bento-card.span-6,
   .bento-card.span-4 {
@@ -744,29 +745,97 @@ html, body {
   }
   .navbar-container {
     height: 60px;
-    padding: 0 1rem;
+    padding: 0 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navbar-brand-center {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    max-width: calc(100% - 85px);
   }
   .navbar-brand-logo {
     height: 36px;
+    width: auto;
   }
   .navbar-brand-title {
-    font-size: 13px;
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
   }
+  .navbar-brand-subtitle {
+    font-size: 9.5px;
+    letter-spacing: 0.3px;
+  }
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .navbar-actions .tool-btn {
+    width: 36px;
+    height: 36px;
+  }
+
   .viewer-stage {
-    min-height: 440px;
-    padding-bottom: 5.5rem;
+    min-height: calc(100vh - 130px);
+    padding: 0.75rem 0.5rem 5rem;
+  }
+
+  .bento-portal-section {
+    padding: 0 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .bento-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .bento-section-title {
+    font-size: 1.05rem;
+  }
+  .bento-card {
+    padding: 1.15rem;
   }
   .bento-card.span-6,
   .bento-card.span-4,
   .bento-card.span-12 {
     grid-column: span 12;
   }
+
+  .footer-corporate {
+    padding: 2.5rem 0 1.25rem;
+  }
+  .footer-container {
+    padding: 0 1rem;
+  }
   .footer-row {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   .footer-bottom-bar {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     text-align: center;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-brand-title {
+    font-size: 11.5px;
+  }
+  .navbar-brand-subtitle {
+    font-size: 9px;
+  }
+  .viewer-stage {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
   }
 }
