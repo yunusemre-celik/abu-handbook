@@ -1,0 +1,94 @@
+{
+  "hotspots": [
+    {
+      "id": "wifi-video-guide",
+      "page": 1,
+      "type": "youtube",
+      "videoId": "eJqzn6EeHRc",
+      "title": "Kablosuz Ağ Bağlantı Rehberi",
+      "subtitle": "Videolu Anlatımı İzle",
+      "badge": "Video Anlatım",
+      "position": {
+        "top": "22%",
+        "left": "50%",
+        "transform": "translateX(-50%)"
+      },
+      "style": "primary-pulse"
+    },
+    {
+      "id": "email-portal-link",
+      "page": 2,
+      "type": "link",
+      "url": "https://mail.antalya.edu.tr",
+      "title": "Office 365 E-Posta Portalı",
+      "subtitle": "mail.antalya.edu.tr adresine git",
+      "badge": "Portal Girişi",
+      "position": {
+        "top": "28%",
+        "left": "50%",
+        "transform": "translateX(-50%)"
+      },
+      "style": "secondary-link"
+    },
+    {
+      "id": "rmp-portal-link",
+      "page": 3,
+      "type": "link",
+      "url": "https://rmp.antalya.edu.tr",
+      "title": "Şifre Yenileme Portalı",
+      "subtitle": "rmp.antalya.edu.tr adresine git",
+      "badge": "Şifre Portalı",
+      "position": {
+        "top": "28%",
+        "left": "50%",
+        "transform": "translateX(-50%)"
+      },
+      "style": "secondary-link"
+    },
+    {
+      "id": "sis-portal-link",
+      "page": 4,
+      "type": "link",
+      "url": "https://sis.antalya.edu.tr",
+      "title": "Öğrenci Bilgi Sistemi (S.I.S)",
+      "subtitle": "sis.antalya.edu.tr adresine git",
+      "badge": "SIS Giriş",
+      "position": {
+        "top": "34%",
+        "left": "50%",
+        "transform": "translateX(-50%)"
+      },
+      "style": "secondary-link"
+    },
+    {
+      "id": "eders-portal-link",
+      "page": 6,
+      "type": "link",
+      "url": "https://eders.antalya.edu.tr",
+      "title": "Öğretim Yönetim Sistemi (E-Ders)",
+      "subtitle": "eders.antalya.edu.tr adresine git",
+      "badge": "E-Ders Portalı",
+      "position": {
+        "top": "28%",
+        "left": "50%",
+        "transform": "translateX(-50%)"
+      },
+      "style": "secondary-link"
+    },
+    {
+      "id": "kampus-portal-link",
+      "page": 7,
+      "type": "link",
+      "url": "https://kampus.antalya.edu.tr",
+      "title": "Uzaktan Eğitim Sistemi (Kampüs)",
+      "subtitle": "kampus.antalya.edu.tr adresine git",
+      "badge": "Kampüs Portalı",
+      "position": {
+        "top": "28%",
+        "left": "50%",
+        "transform": "translateX(-50%)"
+      },
+      "style": "secondary-link"
+    }
+  ]
+}

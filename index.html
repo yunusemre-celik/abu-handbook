@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Öğrenci Başlangıç El Kitabı | Antalya Bilim Üniversitesi</title>
+  
+  <!-- Meta SEO & OpenGraph -->
+  <meta name="description" content="Antalya Bilim Üniversitesi İnteraktif Öğrenci Başlangıç El Kitabı ve Dijital Rehber">
+  <meta name="theme-color" content="#070d1e">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/flipbook.css">
+  <link rel="stylesheet" href="./assets/css/hotspots.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <link rel="stylesheet" href="./assets/css/toolbar.css">
+
+  <!-- External Libraries (CDN - Sıfır build bağımlılığı) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 1. Yükleme Ekranı (Loading Screen) -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="spinner"></div>
+      <div id="loading-text" class="loading-text">Öğrenci El Kitabı Yükleniyor...</div>
+      <div id="loading-progress" class="loading-progress">%0</div>
+    </div>
+
+    <!-- 2. Üst Başlık Çubuğu (Header) -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-badge">ABU</div>
+        <div class="brand-info">
+          <span class="brand-title">Öğrenci Başlangıç El Kitabı</span>
+          <span class="brand-subtitle">Antalya Bilim Üniversitesi • Dijital Rehber</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-thumbnails" class="tool-btn" title="Sayfa Küçük Resimleri (T)" aria-label="Küçük Resimler">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </button>
+        <button id="btn-download" class="tool-btn" title="Orijinal PDF'i İndir" aria-label="PDF İndir">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- 3. Ana Flipbook Sahnesi (Viewer Stage) -->
+    <main class="viewer-stage">
+      <!-- Kenar Hızlı Gezinti Okları -->
+      <button class="nav-arrow prev" title="Önceki Sayfa" aria-label="Önceki Sayfa">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <button class="nav-arrow next" title="Sonraki Sayfa" aria-label="Sonraki Sayfa">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Flipbook Viewport & Kitap Konteyneri -->
+      <div class="flipbook-viewport">
+        <div id="flipbook-container" class="flipbook-container">
+          <!-- Sayfalar ve Hotspot katmanları JavaScript tarafından dinamik oluşturulacaktır -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 4. Alt Yüzen Araç Çubuğu (Toolbar) -->
+    <nav class="app-toolbar" aria-label="Flipbook Kontrolleri">
+      <!-- Navigasyon Grubu -->
+      <div class="toolbar-group">
+        <button id="btn-prev" class="tool-btn" title="Önceki Sayfa (Sol Ok / PageUp)" aria-label="Önceki Sayfa">
+          <svg viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="page-indicator">
+          <input type="number" id="page-input" class="page-input" min="1" max="7" value="1" aria-label="Mevcut Sayfa">
+          <span id="page-total" class="page-total">/ 7</span>
+        </div>
+
+        <button id="btn-next" class="tool-btn" title="Sonraki Sayfa (Sağ Ok / PageDown)" aria-label="Sonraki Sayfa">
+          <svg viewBox="0 0 24 24">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- Yakınlaştırma (Zoom) Grubu -->
+      <div class="toolbar-group zoom-controls">
+        <button id="btn-zoom-out" class="tool-btn" title="Uzaklaştır (-)" aria-label="Uzaklaştır">
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+
+        <button id="btn-zoom-reset" class="tool-btn" title="Varsayılan Boyut (0)" aria-label="Sıfırla">
+          <svg viewBox="0 0 24 24">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+        </button>
+
+        <button id="btn-zoom-in" class="tool-btn" title="Yakınlaştır (+)" aria-label="Yakınlaştır">
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- Ek Özellikler Grubu (Ses & Tam Ekran) -->
+      <div class="toolbar-group">
+        <button id="btn-sound" class="tool-btn active" title="Sesi Aç/Kapat (M)" aria-label="Sayfa Sesi">
+          <svg viewBox="0 0 24 24">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <button id="btn-fullscreen" class="tool-btn" title="Tam Ekran (F)" aria-label="Tam Ekran">
+          <svg viewBox="0 0 24 24">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 5. Yan Sayfa Küçük Resimleri (Thumbnails Drawer) -->
+    <aside class="thumbnails-drawer" aria-label="Sayfa Gezintisi">
+      <div class="drawer-header">
+        <h3 class="drawer-title">Sayfa Gezintisi</h3>
+        <button id="btn-close-drawer" class="tool-btn" title="Kapat" aria-label="Çekmeceyi Kapat">
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <!-- Thumbnail Kartları Dinamik Eklenecektir -->
+      </div>
+    </aside>
+
+    <!-- 6. YouTube Lightbox / Modal Video Oynatıcı -->
+    <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-video-title">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-badge">Video</span>
+            <h2 id="modal-video-title" class="modal-title">Kablosuz Ağ Bağlantı Rehberi</h2>
+          </div>
+          <button id="modal-close-btn" class="modal-close" title="Kapat (ESC)" aria-label="Kapat">
+            <svg viewBox="0 0 24 24">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div id="modal-iframe-container" class="modal-body">
+          <!-- YouTube Iframe Dinamik Olarak Buraya Enjekte Edilir -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ana Uygulama Modülü -->
+  <script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>
