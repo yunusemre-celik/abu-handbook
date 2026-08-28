@@ -6,8 +6,8 @@ export class PdfLoader {
   constructor(pdfPath, options = {}) {
     this.pdfPath = pdfPath;
     this.options = {
-      scale: options.scale || 2.0, // High quality scale
-      thumbScale: options.thumbScale || 0.4,
+      scale: options.scale || 2.5, // Ultra-sharp high quality scale
+      thumbScale: options.thumbScale || 0.45,
       onProgress: options.onProgress || (() => {}),
       ...options
     };
@@ -26,7 +26,7 @@ export class PdfLoader {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 
       'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-    // Set verbosity level to ERRORS to keep console clean from TrueType font warnings
+    // Set verbosity level to ERRORS to keep console clean
     if (window.pdfjsLib.VerbosityLevel) {
       window.pdfjsLib.GlobalWorkerOptions.verbosity = window.pdfjsLib.VerbosityLevel.ERRORS;
     }
@@ -91,7 +91,7 @@ export class PdfLoader {
       this.pagesData.push({
         pageNum,
         canvas,
-        dataUrl: canvas.toDataURL('image/jpeg', 0.92),
+        dataUrl: canvas.toDataURL('image/jpeg', 0.94),
         thumbDataUrl: thumbCanvas.toDataURL('image/jpeg', 0.8),
         width: viewport.width,
         height: viewport.height

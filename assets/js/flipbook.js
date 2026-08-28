@@ -26,35 +26,29 @@ export class FlipbookController {
     const safeBaseHeight = (typeof baseHeight === 'number' && baseHeight > 0) ? baseHeight : 842;
     const aspectRatio = safeBaseWidth / safeBaseHeight;
 
-    // Calculate dimensions to fit viewport while keeping PDF aspect ratio
-    const stage = document.querySelector('.viewer-stage');
-    const stageWidth = stage && stage.clientWidth > 0 ? stage.clientWidth : window.innerWidth;
-    const stageHeight = stage && stage.clientHeight > 0 ? stage.clientHeight : window.innerHeight;
-
-    const availableWidth = Math.max(300, stageWidth - 30);
-    const availableHeight = Math.max(400, stageHeight - 40);
-
-    const isMobile = window.innerWidth <= 768;
+    // Dynamic prominent sizing to fill viewport with high readability
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    const isMobile = winW <= 768;
 
     let singlePageWidth, singlePageHeight;
 
     if (isMobile) {
-      // Single page portrait mode
-      const maxHeight = availableHeight * 0.95;
-      const maxWidth = availableWidth * 0.95;
-
-      singlePageHeight = Math.min(maxHeight, maxWidth / aspectRatio);
-      singlePageWidth = singlePageHeight * aspectRatio;
+      // Single page portrait mode for mobile
+      const targetWidth = Math.min(winW - 20, 600);
+      singlePageWidth = targetWidth;
+      singlePageHeight = singlePageWidth / aspectRatio;
     } else {
-      // Double page spread mode: 2 pages side-by-side
-      const maxBookWidth = availableWidth * 0.92;
-      const maxBookHeight = availableHeight * 0.92;
-
-      let bookHeight = maxBookHeight;
+      // Prominent double-page spread for desktop / tablets
+      // Target 80% to 86% of viewport height (minimum 700px on desktop)
+      const targetHeight = Math.max(700, Math.min(winH * 0.84, 940));
+      let bookHeight = targetHeight;
       let bookWidth = (bookHeight * aspectRatio) * 2;
 
-      if (bookWidth > maxBookWidth) {
-        bookWidth = maxBookWidth;
+      // Ensure it leaves comfortable breathing room for sidebar navigation arrows
+      const maxAllowedWidth = Math.min(winW - 160, 1560);
+      if (bookWidth > maxAllowedWidth) {
+        bookWidth = maxAllowedWidth;
         bookHeight = (bookWidth / 2) / aspectRatio;
       }
 
@@ -62,7 +56,6 @@ export class FlipbookController {
       singlePageHeight = bookHeight;
     }
 
-    // Strict safety clamp to ensure positive integers within wide bounds
     const minW = 100;
     const maxW = 3000;
     const minH = 100;
@@ -81,7 +74,7 @@ export class FlipbookController {
       minHeight: minH,
       maxHeight: maxH,
       showCover: true,
-      maxShadowOpacity: 0.4,
+      maxShadowOpacity: 0.35,
       mobileScrollSupport: true,
       usePortrait: isMobile,
       autoSize: true,
