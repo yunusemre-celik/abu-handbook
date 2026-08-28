@@ -4,6 +4,16 @@
 
 import { soundManager } from './sound-manager.js';
 
+const PAGE_TOPICS = [
+  'Kablosuz İnternet (ABU-Student)',
+  'E-Posta Kullanımı (Office 365)',
+  'Şifre Yenileme (RMP)',
+  'Öğrenci Bilgi Sistemi (S.I.S)',
+  'SIS Giriş Ekranı',
+  'Öğretim Yönetim Sistemi (E-Ders)',
+  'Uzaktan Eğitim Sistemi (Kampüs)'
+];
+
 export class ToolbarController {
   constructor(flipbook) {
     this.flipbook = flipbook;
@@ -113,7 +123,6 @@ export class ToolbarController {
 
   initKeyboardShortcuts() {
     window.addEventListener('keydown', (e) => {
-      // Ignore if user is typing in an input
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
       switch (e.key) {
@@ -179,7 +188,7 @@ export class ToolbarController {
   toggleFullscreen() {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(err => {
-        console.warn('Fullscreen error:', err);
+        console.warn('Fullscreen hatasi:', err);
       });
     } else {
       if (document.exitFullscreen) {
@@ -254,11 +263,16 @@ export class ToolbarController {
       card.className = `thumb-card ${index === 0 ? 'active' : ''}`;
       card.dataset.pageIndex = index;
 
+      const topicText = PAGE_TOPICS[index] || `Bölüm ${page.pageNum}`;
+
       card.innerHTML = `
         <div class="thumb-preview">
           <img src="${page.thumbDataUrl}" alt="Sayfa ${page.pageNum}" loading="lazy">
         </div>
-        <span class="thumb-label">Sayfa ${page.pageNum}</span>
+        <div class="thumb-meta">
+          <span class="thumb-label">Sayfa ${page.pageNum}</span>
+          <span class="thumb-topic" title="${topicText}">${topicText}</span>
+        </div>
       `;
 
       card.addEventListener('click', () => {

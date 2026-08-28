@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Flipbook (StPageFlip) Layout & Book Aesthetics
+   Flipbook (StPageFlip) Layout & Academic Book Aesthetics
    ========================================================================== */
 
 .flipbook-viewport {
@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: transform var(--transition-normal);
+  transition: transform var(--ease-smooth);
   transform-origin: center center;
 }
 
@@ -17,9 +17,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(23, 39, 81, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   position: relative;
+  background-color: #0b152d;
 }
 
 /* Individual Page */
@@ -27,17 +28,17 @@
   background-color: #ffffff;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.04);
 }
 
 .page.--left {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: inset -12px 0 20px rgba(0, 0, 0, 0.07);
 }
 
 .page.--right {
   border-left: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: inset 10px 0 20px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 12px 0 20px rgba(0, 0, 0, 0.07);
 }
 
 .page-content {
@@ -57,15 +58,15 @@
   object-fit: contain;
 }
 
-/* Page Spine Effect (Orta Katlama Çizgisi) */
+/* Book Spine Realism Effect */
 .page.--left::after {
   content: '';
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 30px;
-  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.12));
+  width: 28px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1));
   pointer-events: none;
   z-index: 5;
 }
@@ -76,45 +77,59 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 30px;
-  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.12));
+  width: 28px;
+  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.1));
   pointer-events: none;
   z-index: 5;
 }
 
-/* Side Navigation Arrows (Floating on edges of book) */
+/* Corporate Navigation Arrows (Floating on stage edges) */
 .nav-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: rgba(13, 27, 62, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--panel-border);
-  color: var(--text-main);
+  color: var(--text-white);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 20;
-  transition: all var(--transition-fast);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s var(--ease-smooth);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .nav-arrow:hover {
-  background: var(--primary-color);
-  color: #fff;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+  background: var(--abu-navy-light);
+  border-color: var(--abu-gold);
+  color: var(--abu-gold-light);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(197, 168, 128, 0.3);
+}
+
+.nav-arrow:active {
+  transform: translateY(-50%) scale(0.96);
 }
 
 .nav-arrow:disabled {
   opacity: 0.2;
   cursor: not-allowed;
   transform: translateY(-50%) scale(1);
+  pointer-events: none;
+}
+
+.nav-arrow svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  fill: none;
 }
 
 .nav-arrow.prev {
@@ -127,6 +142,6 @@
 
 @media (max-width: 768px) {
   .nav-arrow {
-    display: none; /* Mobilde swipe/dokunma tercih edilir */
+    display: none;
   }
 }

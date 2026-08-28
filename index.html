@@ -5,46 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Öğrenci Başlangıç El Kitabı | Antalya Bilim Üniversitesi</title>
   
-  <!-- Meta SEO & OpenGraph -->
+  <!-- Meta SEO & Branding -->
   <meta name="description" content="Antalya Bilim Üniversitesi İnteraktif Öğrenci Başlangıç El Kitabı ve Dijital Rehber">
-  <meta name="theme-color" content="#070d1e">
+  <meta name="theme-color" content="#172751">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts: Poppins & Open Sans (antalya.edu.tr Official Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Core Styles -->
+  <!-- Core Stylesheets -->
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/flipbook.css">
   <link rel="stylesheet" href="./assets/css/hotspots.css">
   <link rel="stylesheet" href="./assets/css/modal.css">
   <link rel="stylesheet" href="./assets/css/toolbar.css">
 
-  <!-- External Libraries (CDN - Sıfır build bağımlılığı) -->
+  <!-- External Libraries (CDN) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
 </head>
 <body>
   <div id="app">
-    <!-- 1. Yükleme Ekranı (Loading Screen) -->
-    <div id="loading-screen" class="loading-screen">
-      <div class="spinner"></div>
-      <div id="loading-text" class="loading-text">Öğrenci El Kitabı Yükleniyor...</div>
-      <div id="loading-progress" class="loading-progress">%0</div>
+    <!-- 1. Kurumsal Üst Bant (Corporate Topbar) -->
+    <div class="corporate-topbar">
+      <div class="topbar-university-name">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+        </svg>
+        <span>ANTALYA BİLİM ÜNİVERSİTESİ</span>
+      </div>
+      <div class="topbar-links">
+        <a href="https://antalya.edu.tr/tr" target="_blank" rel="noopener noreferrer" class="topbar-link">
+          <span>antalya.edu.tr</span>
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+        <a href="https://sis.antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="topbar-link highlight">
+          <span>S.I.S Giriş</span>
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+        <a href="https://eders.antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="topbar-link">
+          <span>E-Ders</span>
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+        <a href="https://mail.antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="topbar-link">
+          <span>Webmail</span>
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+      </div>
     </div>
 
-    <!-- 2. Üst Başlık Çubuğu (Header) -->
+    <!-- 2. Ana Başlık Çubuğu (Header) -->
     <header class="app-header">
-      <div class="brand">
-        <div class="brand-badge">ABU</div>
+      <a href="https://antalya.edu.tr/tr" target="_blank" rel="noopener noreferrer" class="brand">
+        <img src="./assets/images/abu_logo_white.png" alt="Antalya Bilim Üniversitesi" class="brand-logo-img">
+        <div class="brand-divider"></div>
         <div class="brand-info">
           <span class="brand-title">Öğrenci Başlangıç El Kitabı</span>
-          <span class="brand-subtitle">Antalya Bilim Üniversitesi • Dijital Rehber</span>
+          <span class="brand-subtitle">Bilgi İşlem Daire Başkanlığı • Dijital Rehber</span>
         </div>
-      </div>
+      </a>
       <div class="header-actions">
-        <button id="btn-thumbnails" class="tool-btn" title="Sayfa Küçük Resimleri (T)" aria-label="Küçük Resimler">
+        <button id="btn-thumbnails" class="tool-btn" title="İçindekiler ve Sayfalar (T)" aria-label="İçindekiler">
           <svg viewBox="0 0 24 24">
             <rect x="3" y="3" width="7" height="7"></rect>
             <rect x="14" y="3" width="7" height="7"></rect>
@@ -52,7 +75,7 @@
             <rect x="3" y="14" width="7" height="7"></rect>
           </svg>
         </button>
-        <button id="btn-download" class="tool-btn" title="Orijinal PDF'i İndir" aria-label="PDF İndir">
+        <button id="btn-download" class="tool-btn" title="Orijinal PDF El Kitabını İndir" aria-label="PDF İndir">
           <svg viewBox="0 0 24 24">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -62,31 +85,42 @@
       </div>
     </header>
 
-    <!-- 3. Ana Flipbook Sahnesi (Viewer Stage) -->
+    <!-- 3. Yükleme Ekranı (Loading Screen) -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-crest">
+        <img src="./assets/images/abu_crest_512.png" alt="Antalya Bilim Üniversitesi Arma">
+      </div>
+      <div class="spinner"></div>
+      <div class="loading-title">Antalya Bilim Üniversitesi</div>
+      <div id="loading-text" class="loading-text">El Kitabı Hazırlanıyor...</div>
+      <div id="loading-progress" class="loading-progress">%0</div>
+    </div>
+
+    <!-- 4. Ana Flipbook Sahnesi (Viewer Stage) -->
     <main class="viewer-stage">
-      <!-- Kenar Hızlı Gezinti Okları -->
+      <!-- Kenar Gezinti Okları -->
       <button class="nav-arrow prev" title="Önceki Sayfa" aria-label="Önceki Sayfa">
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none">
+        <svg viewBox="0 0 24 24">
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
 
       <button class="nav-arrow next" title="Sonraki Sayfa" aria-label="Sonraki Sayfa">
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none">
+        <svg viewBox="0 0 24 24">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </button>
 
-      <!-- Flipbook Viewport & Kitap Konteyneri -->
+      <!-- Flipbook Viewport & Konteyner -->
       <div class="flipbook-viewport">
         <div id="flipbook-container" class="flipbook-container">
-          <!-- Sayfalar ve Hotspot katmanları JavaScript tarafından dinamik oluşturulacaktır -->
+          <!-- Sayfalar JavaScript tarafından dinamik olarak yüklenecektir -->
         </div>
       </div>
     </main>
 
-    <!-- 4. Alt Yüzen Araç Çubuğu (Toolbar) -->
-    <nav class="app-toolbar" aria-label="Flipbook Kontrolleri">
+    <!-- 5. Alt Yüzen Araç Çubuğu (Toolbar) -->
+    <nav class="app-toolbar" aria-label="Kontrol Paneli">
       <!-- Navigasyon Grubu -->
       <div class="toolbar-group">
         <button id="btn-prev" class="tool-btn" title="Önceki Sayfa (Sol Ok / PageUp)" aria-label="Önceki Sayfa">
@@ -138,7 +172,7 @@
 
       <div class="toolbar-divider"></div>
 
-      <!-- Ek Özellikler Grubu (Ses & Tam Ekran) -->
+      <!-- Ses & Tam Ekran Grubu -->
       <div class="toolbar-group">
         <button id="btn-sound" class="tool-btn active" title="Sesi Aç/Kapat (M)" aria-label="Sayfa Sesi">
           <svg viewBox="0 0 24 24">
@@ -155,11 +189,14 @@
       </div>
     </nav>
 
-    <!-- 5. Yan Sayfa Küçük Resimleri (Thumbnails Drawer) -->
-    <aside class="thumbnails-drawer" aria-label="Sayfa Gezintisi">
+    <!-- 6. Yan Sayfa Önizleme Çekmecesi (Thumbnails Drawer) -->
+    <aside class="thumbnails-drawer" aria-label="İçindekiler ve Sayfalar">
       <div class="drawer-header">
-        <h3 class="drawer-title">Sayfa Gezintisi</h3>
-        <button id="btn-close-drawer" class="tool-btn" title="Kapat" aria-label="Çekmeceyi Kapat">
+        <div class="drawer-title-group">
+          <img src="./assets/images/abu_crest_512.png" alt="Arma" class="drawer-crest">
+          <h3 class="drawer-title">İçindekiler</h3>
+        </div>
+        <button id="btn-close-drawer" class="tool-btn" title="Kapat" aria-label="Kapat">
           <svg viewBox="0 0 24 24">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -167,15 +204,16 @@
         </button>
       </div>
       <div class="drawer-body">
-        <!-- Thumbnail Kartları Dinamik Eklenecektir -->
+        <!-- Thumbnail kartları dinamik olarak buraya enjekte edilecektir -->
       </div>
     </aside>
 
-    <!-- 6. YouTube Lightbox / Modal Video Oynatıcı -->
+    <!-- 7. YouTube Lightbox / Modal Video Oynatıcı -->
     <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-video-title">
       <div class="modal-card">
         <div class="modal-header">
           <div class="modal-title-group">
+            <img src="./assets/images/abu_crest_512.png" alt="Arma" class="modal-crest-icon">
             <span class="modal-badge">Video</span>
             <h2 id="modal-video-title" class="modal-title">Kablosuz Ağ Bağlantı Rehberi</h2>
           </div>

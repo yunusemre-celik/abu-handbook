@@ -4,7 +4,7 @@ Bu web uygulaması, Antalya Bilim Üniversitesi Öğrenci Başlangıç El Kitab�
 
 ---
 
-## 🌟 Öne Çıkan Özellikler
+##  Öne Çıkan Özellikler
 
 1. **GitHub Pages Uyumlu (Zero Backend / Zero Build):**
    - Herhangi bir derleme (build) komutuna ihtiyaç duymaz.
@@ -28,7 +28,7 @@ Bu web uygulaması, Antalya Bilim Üniversitesi Öğrenci Başlangıç El Kitab�
 
 ---
 
-## 📁 Proje Dizin Yapısı
+##  Proje Dizin Yapısı
 
 ```text
 abu-handbook-flipbook/
@@ -57,7 +57,7 @@ abu-handbook-flipbook/
 
 ---
 
-## 🚀 GitHub Pages Üzerinde Yayınlama
+##  GitHub Pages Üzerinde Yayınlama
 
 1. GitHub'da yeni bir repository (depo) oluşturun (örneğin: `abu-handbook`).
 2. Bu klasörün içindeki tüm dosyaları deponuza yükleyin (push edin):
