@@ -1,20 +1,12 @@
 {
+  "cover": {
+    "page": 0,
+    "type": "embedded_video",
+    "videoId": "eJqzn6EeHRc",
+    "title": "Antalya Bilim Üniversitesi - Başlangıç Rehberi",
+    "windowTitle": "Rehber Video Oynatıcı"
+  },
   "hotspots": [
-    {
-      "id": "wifi-video-guide",
-      "page": 1,
-      "type": "youtube",
-      "videoId": "eJqzn6EeHRc",
-      "title": "Kablosuz Ağ Bağlantı Rehberi",
-      "subtitle": "Videolu Anlatımı İzle",
-      "badge": "Video Anlatım",
-      "position": {
-        "top": "22%",
-        "left": "50%",
-        "transform": "translateX(-50%)"
-      },
-      "style": "primary-pulse"
-    },
     {
       "id": "email-portal-link",
       "page": 2,

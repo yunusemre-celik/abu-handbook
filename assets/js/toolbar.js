@@ -4,16 +4,6 @@
 
 import { soundManager } from './sound-manager.js';
 
-const PAGE_TOPICS = [
-  'Kablosuz İnternet (ABU-Student)',
-  'E-Posta Kullanımı (Office 365)',
-  'Şifre Yenileme (RMP)',
-  'Öğrenci Bilgi Sistemi (S.I.S)',
-  'SIS Giriş Ekranı',
-  'Öğretim Yönetim Sistemi (E-Ders)',
-  'Uzaktan Eğitim Sistemi (Kampüs)'
-];
-
 export class ToolbarController {
   constructor(flipbook) {
     this.flipbook = flipbook;
@@ -56,10 +46,12 @@ export class ToolbarController {
 
     // Page Input
     if (this.pageInput) {
+      this.pageInput.min = '0';
+      this.pageInput.max = `${this.flipbook.totalPages - 1}`;
       this.pageInput.addEventListener('change', (e) => {
         const val = parseInt(e.target.value, 10);
-        if (!isNaN(val) && val >= 1 && val <= this.flipbook.totalPages) {
-          this.flipbook.turnToPage(val - 1);
+        if (!isNaN(val) && val >= 0 && val < this.flipbook.totalPages) {
+          this.flipbook.turnToPage(val);
         } else {
           this.updatePageIndicator(this.flipbook.getCurrentPageIndex(), this.flipbook.totalPages);
         }
@@ -188,7 +180,7 @@ export class ToolbarController {
   toggleFullscreen() {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(err => {
-        console.warn('Fullscreen hatasi:', err);
+        console.warn('Fullscreen hatası:', err);
       });
     } else {
       if (document.exitFullscreen) {
@@ -222,12 +214,12 @@ export class ToolbarController {
   }
 
   updatePageIndicator(pageIndex, totalPages) {
-    const currentDisplayPage = pageIndex + 1;
     if (this.pageInput) {
-      this.pageInput.value = currentDisplayPage;
+      this.pageInput.value = pageIndex;
     }
     if (this.pageTotalEl) {
-      this.pageTotalEl.textContent = `/ ${totalPages}`;
+      // 0. Sayfa Kapak olduğu için toplam sayfa gösterimi: / 7
+      this.pageTotalEl.textContent = `/ ${totalPages - 1}`;
     }
   }
 
@@ -263,14 +255,15 @@ export class ToolbarController {
       card.className = `thumb-card ${index === 0 ? 'active' : ''}`;
       card.dataset.pageIndex = index;
 
-      const topicText = PAGE_TOPICS[index] || `Bölüm ${page.pageNum}`;
+      const pageLabel = page.pageNum === 0 ? 'Sayfa 0 (Kapak)' : `Sayfa ${page.pageNum}`;
+      const topicText = page.topic || `Bölüm ${page.pageNum}`;
 
       card.innerHTML = `
         <div class="thumb-preview">
-          <img src="${page.thumbDataUrl}" alt="Sayfa ${page.pageNum}" loading="lazy">
+          <img src="${page.thumbDataUrl}" alt="${pageLabel}" loading="lazy" style="${page.pageNum === 0 ? 'object-fit: contain; padding: 12px; background: #172751;' : ''}">
         </div>
         <div class="thumb-meta">
-          <span class="thumb-label">Sayfa ${page.pageNum}</span>
+          <span class="thumb-label">${pageLabel}</span>
           <span class="thumb-topic" title="${topicText}">${topicText}</span>
         </div>
       `;
