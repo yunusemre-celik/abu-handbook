@@ -26,12 +26,18 @@ export class PdfLoader {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 
       'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+    // Set verbosity level to ERRORS to keep console clean from TrueType font warnings
+    if (window.pdfjsLib.VerbosityLevel) {
+      window.pdfjsLib.GlobalWorkerOptions.verbosity = window.pdfjsLib.VerbosityLevel.ERRORS;
+    }
+
     this.options.onProgress(10, 'Katalog yükleniyor...');
 
     const loadingTask = window.pdfjsLib.getDocument({
       url: this.pdfPath,
       cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-      cMapPacked: true
+      cMapPacked: true,
+      verbosity: window.pdfjsLib.VerbosityLevel ? window.pdfjsLib.VerbosityLevel.ERRORS : 0
     });
 
     loadingTask.onProgress = (progress) => {
