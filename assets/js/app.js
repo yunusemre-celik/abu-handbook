@@ -201,10 +201,10 @@ class App {
         </div>
 
         <div class="back-cover-center">
-          <a href="https://antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="back-cover-site-box" data-tooltip="Resmi Web Sitesini Ziyaret Et">
+          <a href="javascript:void(0);" class="back-cover-site-box" data-tooltip="Konsept Tasarım • Bağlantı Yok">
             <span class="site-box-label">Resmi Web Sitesi</span>
             <span class="site-box-url">
-              <span>antalya.edu.tr</span>
+              <span>antalya.edu.tr (Placeholder)</span>
               <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
             </span>
           </a>
