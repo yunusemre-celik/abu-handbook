@@ -1,5 +1,6 @@
 /* ==========================================================================
    Hotspot Layer & Interactive Elements
+   Strict antalya.edu.tr Color System
    ========================================================================== */
 
 .hotspot-layer {
@@ -19,35 +20,35 @@
   gap: 0.5rem;
   cursor: pointer;
   z-index: 12;
-  transition: transform 0.2s var(--ease-smooth), filter 0.2s var(--ease-smooth);
+  transition: transform var(--transition-fast), filter var(--transition-fast);
 }
 
 /* Primary YouTube Pulse Hotspot */
 .hotspot-youtube {
-  background: linear-gradient(135deg, #e50914 0%, #b91c1c 100%);
+  background: var(--abu-candidate);
   color: #ffffff;
   padding: 8px 18px;
-  border-radius: var(--radius-full);
-  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.95);
+  border-radius: 9999px;
+  box-shadow: 0 4px 20px rgba(255, 99, 71, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.95);
   border: none;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.84rem;
+  font-size: 13px;
   letter-spacing: 0.3px;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   cursor: pointer;
   position: relative;
-  transition: all 0.2s var(--ease-smooth);
+  transition: all var(--transition-fast);
 }
 
 .hotspot-youtube::before {
   content: '';
   position: absolute;
   inset: -6px;
-  border-radius: var(--radius-full);
-  border: 2px solid #e50914;
+  border-radius: 9999px;
+  border: 2px solid var(--abu-candidate);
   opacity: 0.85;
   animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
   pointer-events: none;
@@ -61,7 +62,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #e50914;
+  color: var(--abu-candidate);
   flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
@@ -70,13 +71,12 @@
   width: 11px;
   height: 11px;
   margin-left: 2px;
-  fill: #e50914;
+  fill: var(--abu-candidate);
 }
 
 .hotspot-youtube:hover {
   transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 8px 28px rgba(229, 9, 20, 0.65), 0 0 0 2px #ffffff;
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 8px 26px rgba(255, 99, 71, 0.6), 0 0 0 2px #ffffff;
 }
 
 .hotspot-youtube:active {
@@ -85,30 +85,27 @@
 
 /* Secondary Portal Link Hotspot */
 .hotspot-link {
-  background: rgba(11, 21, 45, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--abu-dark);
   color: #ffffff;
   padding: 6px 14px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--panel-border-gold);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  border-radius: 9999px;
+  border: 1px solid var(--abu-border);
+  box-shadow: 0 4px 16px rgba(9, 20, 51, 0.3);
   font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: 0.78rem;
+  font-weight: 600;
+  font-size: 12px;
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   text-decoration: none;
-  transition: all 0.2s var(--ease-smooth);
+  transition: all var(--transition-fast);
 }
 
 .hotspot-link:hover {
-  background: var(--abu-navy-light);
-  border-color: var(--abu-gold);
-  color: var(--abu-gold-light);
+  background: var(--abu-hover);
+  border-color: var(--abu-ice);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(197, 168, 128, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 171, 200, 0.3);
 }
 
 .hotspot-link svg {
@@ -126,10 +123,10 @@
     opacity: 0.95;
   }
   50% {
-    opacity: 0.45;
+    opacity: 0.4;
   }
   100% {
-    transform: scale(1.38);
+    transform: scale(1.35);
     opacity: 0;
   }
 }

@@ -1,53 +1,35 @@
 /* ==========================================================================
-   Antalya Bilim Üniversitesi - Student Catalog & Bento Grid System
-   Background: #f4f4f4 | Zero Emojis | High Quality SVGs | Responsive
+   Antalya Bilim Üniversitesi - Official Corporate Design System
+   Strict Compliance with antalya.edu.tr (Fonts, Exact Colors & Components)
    ========================================================================== */
 
 :root {
-  /* Corporate Colors */
-  --abu-navy-dark: #0b152d;
+  /* Exact Colors from antalya.edu.tr */
   --abu-navy: #172751;
-  --abu-navy-light: #233870;
-  --abu-blue: #1b4d89;
-  --abu-blue-hover: #2563eb;
-  --abu-gold: #c5a880;
-  --abu-gold-light: #dfc8a8;
-  
-  /* Light Theme #f4f4f4 */
-  --bg-page: #f4f4f4;
-  --bg-card: #ffffff;
-  --card-border: rgba(23, 39, 81, 0.12);
-  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
-  --card-shadow-hover: 0 18px 40px rgba(23, 39, 81, 0.14), 0 4px 12px rgba(197, 168, 128, 0.2);
+  --abu-topbar: #0e1d44;
+  --abu-dark: #091433;
+  --abu-hover: #59698f;
+  --abu-ice: #00ABC8;
+  --abu-candidate: #FF6347;
+  --abu-obs: #18398c;
+  --abu-bg: #f4f4f4;
+  --abu-surface: #f4f6f9;
+  --abu-card-bg: #ffffff;
+  --abu-text-dark: #212529;
+  --abu-text-muted: #464E5F;
+  --abu-text-sub: #59698f;
+  --abu-white: #ffffff;
+  --abu-border: rgba(255, 255, 255, 0.15);
+  --abu-border-light: #e9ecef;
+  --abu-divider: #ddd;
 
-  /* Navbar & Toolbar */
-  --nav-bg: rgba(23, 39, 81, 0.96);
-  --toolbar-bg: rgba(23, 39, 81, 0.92);
-  --panel-border: rgba(255, 255, 255, 0.14);
-  --panel-border-gold: rgba(197, 168, 128, 0.35);
-
-  /* Typography */
-  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-  /* Text Colors */
-  --text-dark: #172751;
-  --text-dark-muted: #59698f;
-  --text-white: #ffffff;
-  --text-light: #e2e8f0;
-  --text-muted: #94a3b8;
-
-  /* Layout */
-  --header-height: 70px;
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
+  /* Official Fonts from antalya.edu.tr */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
 
   /* Transitions */
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
 }
 
 *, *::before, *::after {
@@ -61,110 +43,231 @@ html, body {
   height: 100%;
   overflow-x: hidden;
   font-family: var(--font-body);
-  background-color: var(--bg-page);
-  color: var(--text-dark);
+  background-color: var(--abu-bg);
+  color: var(--abu-text-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* App Container */
 #app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  background-color: var(--bg-page);
+  background-color: var(--abu-bg);
 }
 
-/* 1. Ortalı Kurumsal Başlık Çubuğu (Centered Navbar) */
-.app-header {
-  height: var(--header-height);
-  background: var(--nav-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--panel-border-gold);
+/* ==========================================================================
+   1. TOP-HEADER (antalya.edu.tr Birebir Üst Bant)
+   ========================================================================== */
+.top-header {
+  height: 40px;
+  min-height: 40px;
+  background: var(--abu-topbar);
+  color: var(--abu-white);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--abu-border);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  z-index: 50;
+}
+
+.top-header-container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.header-left {
+.top-header-left {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  flex: 1;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.5px;
 }
 
-/* Merkeze Ortalı Başlık */
-.header-center {
+.top-header-right {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.85rem;
-  flex: 2;
-  text-align: center;
+  gap: 8px;
+}
+
+/* antalya.edu.tr Buton Stilleri */
+.btn-abu-ice {
+  background-color: var(--abu-ice);
+  color: var(--abu-white) !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-candidate-student {
+  background-color: var(--abu-candidate);
+  color: var(--abu-white) !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-login-ubs {
+  background-color: var(--abu-obs);
+  color: var(--abu-white) !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-abu-ice:hover,
+.btn-candidate-student:hover,
+.btn-login-ubs:hover {
+  opacity: 0.9;
+}
+
+.top-header-lang {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 6px;
+}
+
+.top-header-lang a {
+  color: var(--abu-white);
   text-decoration: none;
 }
 
-.brand-logo-img {
-  height: 44px;
+.top-header-lang span {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   2. NAVBAR (antalya.edu.tr Birebir Kurumsal Menü & Ortalı Logo)
+   ========================================================================== */
+.navbar-bg {
+  background: var(--abu-navy);
+  color: var(--abu-white);
+  font-family: var(--font-heading);
+  position: sticky;
+  top: 0;
+  z-index: 45;
+  box-shadow: 0 4px 18px rgba(9, 20, 51, 0.35);
+}
+
+.navbar-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+  gap: 2px;
+}
+
+.navbar-text {
+  color: var(--abu-white);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0 14px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+.navbar-text:hover {
+  background-color: var(--abu-hover);
+}
+
+/* Ortalı Logo & Başlık Grubu */
+.navbar-brand-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  padding: 0 10px;
+}
+
+.navbar-brand-logo {
+  height: 48px;
   width: auto;
   object-fit: contain;
 }
 
-.brand-info {
+.navbar-brand-text {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
-.brand-title {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
+.navbar-brand-title {
+  font-size: 15px;
   font-weight: 700;
-  color: var(--text-white);
-  letter-spacing: 0.5px;
+  color: var(--abu-white);
   line-height: 1.2;
 }
 
-.brand-subtitle {
-  font-size: 0.75rem;
-  color: var(--abu-gold);
-  font-weight: 600;
-  letter-spacing: 0.4px;
+.navbar-brand-subtitle {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
-.header-right {
+.navbar-actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 0.6rem;
-  flex: 1;
+  gap: 8px;
 }
 
-/* 2. Ana Flipbook Sahnesi (Viewer Stage) */
+/* ==========================================================================
+   3. FLIPBOOK SAHNESİ (Viewer Stage)
+   ========================================================================== */
 .viewer-stage {
-  height: calc(100vh - var(--header-height) - 40px);
-  min-height: 520px;
+  min-height: 540px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.25rem 1rem 4.5rem;
-  background-color: var(--bg-page);
+  padding: 1.5rem 1rem 4.5rem;
+  background-color: var(--abu-bg);
 }
 
 /* Yükleme Ekranı */
 .loading-screen {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 50% 35%, #172751 0%, #0b152d 70%, #060b18 100%);
+  background: var(--abu-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,11 +284,10 @@ html, body {
 }
 
 .loading-crest {
-  width: 76px;
-  height: 76px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  box-shadow: 0 0 30px rgba(197, 168, 128, 0.45), 0 0 0 2px rgba(197, 168, 128, 0.7);
-  animation: pulse-crest 2s infinite ease-in-out;
+  box-shadow: 0 0 25px rgba(0, 171, 200, 0.4);
 }
 
 .loading-crest img {
@@ -195,23 +297,11 @@ html, body {
   border-radius: 50%;
 }
 
-@keyframes pulse-crest {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 25px rgba(197, 168, 128, 0.35), 0 0 0 2px rgba(197, 168, 128, 0.5);
-  }
-  50% {
-    transform: scale(1.06);
-    box-shadow: 0 0 40px rgba(37, 99, 235, 0.5), 0 0 0 3px rgba(197, 168, 128, 0.8);
-  }
-}
-
 .spinner {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: var(--abu-gold);
-  border-right-color: #3b82f6;
+  border-top-color: var(--abu-ice);
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
 }
@@ -222,35 +312,34 @@ html, body {
 
 .loading-title {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: var(--text-white);
-  letter-spacing: 0.5px;
+  color: var(--abu-white);
 }
 
 .loading-text {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--abu-gold-light);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .loading-progress {
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: #93c5fd;
+  color: var(--abu-ice);
   background: rgba(255, 255, 255, 0.08);
   padding: 4px 14px;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  border: 1px solid var(--abu-border);
 }
 
 /* ==========================================================================
-   3. BENTO GRID PORTAL BAĞLANTILARI (Alt Bento Alanı)
+   4. BENTO GRID PORTAL BAĞLANTILARI
    ========================================================================== */
 .bento-portal-section {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto 3rem;
   padding: 0 1.5rem;
 }
@@ -260,13 +349,13 @@ html, body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.25rem;
-  border-bottom: 2px solid rgba(23, 39, 81, 0.08);
+  border-bottom: 2px solid var(--abu-border-light);
   padding-bottom: 0.75rem;
 }
 
 .bento-section-title {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--abu-navy);
   display: flex;
@@ -281,28 +370,27 @@ html, body {
 }
 
 .bento-section-badge {
-  font-size: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 12px;
   font-weight: 600;
   color: var(--abu-navy);
   background: rgba(23, 39, 81, 0.08);
   padding: 4px 12px;
-  border-radius: var(--radius-full);
+  border-radius: 9999px;
 }
 
-/* Bento Grid Düzeni */
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1.25rem;
 }
 
-/* Bento Kartı Temel Yapısı */
 .bento-card {
-  background: var(--bg-card);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-lg);
+  background: var(--abu-card-bg);
+  border: 1px solid var(--abu-border-light);
+  border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: var(--card-shadow);
+  box-shadow: 0 4px 15px rgba(9, 20, 51, 0.06);
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -310,7 +398,7 @@ html, body {
   justify-content: space-between;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s var(--ease-smooth);
+  transition: all var(--transition-normal);
 }
 
 .bento-card::before {
@@ -320,22 +408,21 @@ html, body {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--abu-navy), var(--abu-blue));
+  background: var(--abu-navy);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition-fast);
 }
 
 .bento-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--card-shadow-hover);
-  border-color: rgba(23, 39, 81, 0.25);
+  box-shadow: 0 12px 30px rgba(9, 20, 51, 0.12);
+  border-color: var(--abu-hover);
 }
 
 .bento-card:hover::before {
   opacity: 1;
 }
 
-/* Bento Grid Boyutlandırmaları */
 .bento-card.span-6 {
   grid-column: span 6;
 }
@@ -344,11 +431,6 @@ html, body {
   grid-column: span 4;
 }
 
-.bento-card.span-12 {
-  grid-column: span 12;
-}
-
-/* Kart İçi Elemanlar */
 .bento-card-top {
   display: flex;
   align-items: flex-start;
@@ -357,67 +439,63 @@ html, body {
 }
 
 .bento-icon-wrapper {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-md);
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
   background: rgba(23, 39, 81, 0.06);
   color: var(--abu-navy);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
 .bento-card:hover .bento-icon-wrapper {
   background: var(--abu-navy);
-  color: var(--abu-gold);
+  color: var(--abu-white);
 }
 
 .bento-icon-wrapper svg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   stroke: currentColor;
   stroke-width: 2;
   fill: none;
 }
 
 .bento-badge {
-  font-size: 0.72rem;
+  font-family: var(--font-heading);
+  font-size: 11px;
   font-weight: 700;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  border-radius: 9999px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .bento-badge.obs {
-  background: #eff6ff;
-  color: #1d4ed8;
-  border: 1px solid #bfdbfe;
+  background: rgba(24, 57, 140, 0.1);
+  color: var(--abu-obs);
 }
 
 .bento-badge.lms {
-  background: #f0fdf4;
-  color: #15803d;
-  border: 1px solid #bbf7d0;
+  background: rgba(0, 171, 200, 0.12);
+  color: #007a83;
 }
 
 .bento-badge.mail {
-  background: #faf5ff;
-  color: #7e22ce;
-  border: 1px solid #e9d5ff;
+  background: rgba(89, 105, 143, 0.12);
+  color: var(--abu-navy);
 }
 
 .bento-badge.rmp {
-  background: #fff7ed;
-  color: #c2410c;
-  border: 1px solid #fed7aa;
+  background: rgba(255, 99, 71, 0.12);
+  color: var(--abu-candidate);
 }
 
 .bento-badge.web {
-  background: #f8fafc;
-  color: #475569;
-  border: 1px solid #e2e8f0;
+  background: rgba(23, 39, 81, 0.08);
+  color: var(--abu-navy);
 }
 
 .bento-card-body h3 {
@@ -430,29 +508,30 @@ html, body {
 
 .bento-card-body p {
   font-size: 0.85rem;
-  color: var(--text-dark-muted);
+  color: var(--abu-text-muted);
   line-height: 1.5;
 }
 
 .bento-card-footer {
   margin-top: 1.25rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--abu-border-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-family: var(--font-heading);
+  font-size: 13px;
   font-weight: 600;
-  color: var(--abu-blue);
+  color: var(--abu-obs);
 }
 
 .bento-card-footer svg {
   width: 16px;
   height: 16px;
   stroke: currentColor;
-  stroke-width: 2.5;
+  stroke-width: 2.2;
   fill: none;
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-fast);
 }
 
 .bento-card:hover .bento-card-footer svg {
@@ -460,7 +539,155 @@ html, body {
 }
 
 /* ==========================================================================
-   4. GELİŞMİŞ TOOLTIP SİSTEMİ
+   5. FOOTER (antalya.edu.tr Birebir Kurumsal Alt Alan)
+   ========================================================================== */
+.footer-corporate {
+  background: var(--abu-dark);
+  color: var(--abu-white);
+  padding: 3.5rem 0 1.5rem;
+  font-size: 14px;
+}
+
+.footer-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.footer-row {
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-logo-img {
+  max-height: 55px;
+  width: auto;
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.footer-address-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-address-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+.footer-address-list svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--abu-ice);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.footer-address-list a {
+  color: var(--abu-white);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-address-list a:hover {
+  color: var(--abu-ice);
+}
+
+.footer-menu-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--abu-white);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.footer-menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-menu-list a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  font-size: 13.5px;
+}
+
+.footer-menu-list a:hover {
+  color: var(--abu-white);
+  padding-left: 3px;
+}
+
+.footer-app-badges {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-app-badge img {
+  height: 38px;
+  width: auto;
+  border-radius: 4px;
+}
+
+.footer-social-media {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-social-link {
+  color: var(--abu-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all var(--transition-fast);
+}
+
+.footer-social-link:hover {
+  background: var(--abu-hover);
+  transform: translateY(-2px);
+}
+
+.footer-social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid var(--abu-border);
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.footer-author-tag {
+  color: var(--abu-ice);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   6. TOOLTIP SİSTEMİ
    ========================================================================== */
 [data-tooltip] {
   position: relative;
@@ -472,21 +699,21 @@ html, body {
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%) translateY(4px);
-  background: #0b152d;
-  color: #ffffff;
+  background: var(--abu-dark);
+  color: var(--abu-white);
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 12px;
   font-weight: 500;
   padding: 5px 10px;
-  border-radius: var(--radius-xs);
+  border-radius: 4px;
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   z-index: 200;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(197, 168, 128, 0.3);
+  border: 1px solid var(--abu-border);
 }
 
 [data-tooltip]:hover::after {
@@ -496,9 +723,12 @@ html, body {
 }
 
 /* ==========================================================================
-   5. MOBİL DUYARLILIK (Responsive Design)
+   7. MOBİL UYUMLULUK
    ========================================================================== */
 @media (max-width: 992px) {
+  .footer-row {
+    grid-template-columns: 1fr 1fr;
+  }
   .bento-card.span-6,
   .bento-card.span-4 {
     grid-column: span 6;
@@ -506,23 +736,21 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  .app-header {
+  .top-header {
+    display: none;
+  }
+  .navbar-nav {
+    display: none;
+  }
+  .navbar-container {
+    height: 60px;
     padding: 0 1rem;
   }
-  .header-left, .header-right {
-    flex: 0 0 auto;
+  .navbar-brand-logo {
+    height: 36px;
   }
-  .header-center {
-    flex: 1;
-  }
-  .brand-title {
-    font-size: 0.88rem;
-  }
-  .brand-subtitle {
-    font-size: 0.65rem;
-  }
-  .brand-logo-img {
-    height: 32px;
+  .navbar-brand-title {
+    font-size: 13px;
   }
   .viewer-stage {
     min-height: 440px;
@@ -532,5 +760,13 @@ html, body {
   .bento-card.span-4,
   .bento-card.span-12 {
     grid-column: span 12;
+  }
+  .footer-row {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
   }
 }

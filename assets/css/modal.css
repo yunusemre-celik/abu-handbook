@@ -1,13 +1,14 @@
 /* ==========================================================================
-   YouTube Lightbox / Modal Video Player (Corporate Style)
+   YouTube Lightbox / Modal Video Player
+   Strict antalya.edu.tr Color & Font System
    ========================================================================== */
 
 .video-modal {
   position: fixed;
   inset: 0;
-  background: rgba(6, 11, 24, 0.85);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(9, 20, 51, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -15,7 +16,7 @@
   padding: 1.5rem;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s var(--ease-smooth), visibility 0.3s var(--ease-smooth);
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
 }
 
 .video-modal.active {
@@ -26,15 +27,15 @@
 .modal-card {
   width: 100%;
   max-width: 880px;
-  background: var(--abu-navy-dark);
-  border: 1px solid var(--panel-border-gold);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), 0 0 45px rgba(197, 168, 128, 0.2);
+  background: var(--abu-dark);
+  border: 1px solid var(--abu-border);
+  border-radius: 12px;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 171, 200, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   transform: scale(0.92) translateY(20px);
-  transition: transform 0.35s var(--ease-spring);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .video-modal.active .modal-card {
@@ -46,15 +47,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.1rem 1.5rem;
+  padding: 1rem 1.5rem;
   background: var(--abu-navy);
-  border-bottom: 1px solid var(--panel-border);
+  border-bottom: 1px solid var(--abu-border);
 }
 
 .modal-title-group {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 10px;
 }
 
 .modal-crest-icon {
@@ -62,26 +63,26 @@
   height: 28px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 10px rgba(197, 168, 128, 0.4);
+  box-shadow: 0 0 10px rgba(0, 171, 200, 0.4);
 }
 
 .modal-badge {
-  background: #e50914;
+  background: var(--abu-candidate);
   color: #ffffff;
   font-family: var(--font-heading);
-  font-size: 0.7rem;
+  font-size: 11px;
   font-weight: 700;
   padding: 3px 9px;
-  border-radius: var(--radius-xs);
+  border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .modal-title {
   font-family: var(--font-heading);
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: var(--text-white);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--abu-white);
 }
 
 .modal-close {
@@ -89,19 +90,19 @@
   height: 36px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: var(--text-muted);
+  border: 1px solid var(--abu-border);
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s var(--ease-smooth);
+  transition: all var(--transition-fast);
 }
 
 .modal-close:hover {
-  background: #e50914;
+  background: var(--abu-candidate);
   color: #ffffff;
-  border-color: #e50914;
+  border-color: var(--abu-candidate);
   transform: rotate(90deg);
 }
 

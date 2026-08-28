@@ -1,5 +1,6 @@
 /* ==========================================================================
    Corporate Floating Toolbar & Thumbnails Drawer
+   Strict antalya.edu.tr Color System
    ========================================================================== */
 
 .app-toolbar {
@@ -7,19 +8,19 @@
   bottom: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--panel-bg);
+  background: rgba(23, 39, 81, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--panel-border-gold);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(197, 168, 128, 0.15);
-  border-radius: var(--radius-full);
+  border: 1px solid var(--abu-border);
+  box-shadow: 0 16px 40px rgba(9, 20, 51, 0.35);
+  border-radius: 9999px;
   padding: 6px 14px;
   display: flex;
   align-items: center;
   gap: 8px;
   z-index: 50;
   max-width: calc(100vw - 2rem);
-  transition: transform 0.3s var(--ease-smooth), opacity 0.3s var(--ease-smooth);
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
 }
 
 .toolbar-group {
@@ -31,7 +32,7 @@
 .toolbar-divider {
   width: 1px;
   height: 22px;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--abu-border);
   margin: 0 4px;
 }
 
@@ -41,18 +42,18 @@
   border-radius: 50%;
   background: transparent;
   border: none;
-  color: var(--text-light);
+  color: var(--abu-white);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   position: relative;
-  transition: all 0.2s var(--ease-smooth);
+  transition: all var(--transition-fast);
 }
 
 .tool-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--abu-gold-light);
+  background: var(--abu-hover);
+  color: var(--abu-white);
   transform: translateY(-1px);
 }
 
@@ -67,9 +68,9 @@
 }
 
 .tool-btn.active {
-  background: var(--abu-navy-light);
-  color: var(--abu-gold);
-  border: 1px solid var(--panel-border-gold);
+  background: var(--abu-obs);
+  color: var(--abu-white);
+  border: 1px solid var(--abu-border);
 }
 
 .tool-btn svg {
@@ -87,53 +88,52 @@
   gap: 6px;
   padding: 0 6px;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-white);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--abu-white);
 }
 
 .page-input {
-  width: 34px;
+  width: 36px;
   height: 28px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--abu-border);
+  border-radius: 4px;
   color: #ffffff;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   text-align: center;
   outline: none;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .page-input:focus {
-  border-color: var(--abu-gold);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 8px rgba(197, 168, 128, 0.4);
+  border-color: var(--abu-ice);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .page-total {
-  color: var(--text-muted);
-  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
 }
 
-/* Thumbnails Drawer (Corporate Sidebar) */
+/* Thumbnails Drawer */
 .thumbnails-drawer {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   width: 320px;
-  background: var(--abu-navy-dark);
+  background: var(--abu-dark);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-right: 1px solid var(--panel-border-gold);
+  border-right: 1px solid var(--abu-border);
   z-index: 90;
   display: flex;
   flex-direction: column;
   transform: translateX(-100%);
-  transition: transform 0.35s var(--ease-spring);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-shadow: 15px 0 50px rgba(0, 0, 0, 0.7);
 }
 
@@ -147,7 +147,7 @@
   align-items: center;
   justify-content: space-between;
   background: var(--abu-navy);
-  border-bottom: 1px solid var(--panel-border);
+  border-bottom: 1px solid var(--abu-border);
 }
 
 .drawer-title-group {
@@ -165,9 +165,9 @@
 
 .drawer-title {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-white);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--abu-white);
   letter-spacing: 0.3px;
 }
 
@@ -185,17 +185,17 @@
 }
 
 .drawer-body::-webkit-scrollbar-thumb {
-  background: var(--panel-border-gold);
-  border-radius: var(--radius-full);
+  background: var(--abu-hover);
+  border-radius: 9999px;
 }
 
 .thumb-card {
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  border: 1px solid var(--abu-border);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
   cursor: pointer;
-  transition: all 0.2s var(--ease-smooth);
+  transition: all var(--transition-fast);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -204,22 +204,22 @@
 }
 
 .thumb-card:hover {
-  border-color: var(--abu-gold);
-  background: rgba(197, 168, 128, 0.08);
+  border-color: var(--abu-ice);
+  background: rgba(0, 171, 200, 0.1);
   transform: translateY(-2px);
 }
 
 .thumb-card.active {
-  border-color: var(--abu-gold);
-  background: rgba(197, 168, 128, 0.18);
-  box-shadow: 0 0 20px rgba(197, 168, 128, 0.35);
+  border-color: var(--abu-ice);
+  background: rgba(0, 171, 200, 0.2);
+  box-shadow: 0 0 20px rgba(0, 171, 200, 0.35);
 }
 
 .thumb-preview {
   width: 100%;
   aspect-ratio: 1 / 1.414;
   background: #ffffff;
-  border-radius: var(--radius-xs);
+  border-radius: 4px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -242,14 +242,14 @@
 
 .thumb-label {
   font-family: var(--font-heading);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--abu-gold);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--abu-ice);
 }
 
 .thumb-topic {
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -257,8 +257,8 @@
 }
 
 .thumb-card.active .thumb-topic {
-  color: var(--text-white);
-  font-weight: 500;
+  color: var(--abu-white);
+  font-weight: 600;
 }
 
 @media (max-width: 640px) {
