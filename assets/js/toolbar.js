@@ -100,7 +100,7 @@ export class ToolbarController {
       this.btnDownload.addEventListener('click', () => {
         const link = document.createElement('a');
         link.href = './assets/pdf/student-handbook-abu.pdf';
-        link.download = 'student-handbook-abu.pdf';
+        link.download = 'antalya-bilim-ogrenci-katalogu.pdf';
         link.click();
       });
     }
@@ -193,7 +193,7 @@ export class ToolbarController {
     if (!this.btnSound) return;
     if (soundManager.isEnabled) {
       this.btnSound.classList.add('active');
-      this.btnSound.setAttribute('title', 'Sesi Kapat (M)');
+      this.btnSound.setAttribute('data-tooltip', 'Sesi Kapat (M)');
       this.btnSound.innerHTML = `
         <svg viewBox="0 0 24 24">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -202,7 +202,7 @@ export class ToolbarController {
       `;
     } else {
       this.btnSound.classList.remove('active');
-      this.btnSound.setAttribute('title', 'Sesi Aç (M)');
+      this.btnSound.setAttribute('data-tooltip', 'Sesi Aç (M)');
       this.btnSound.innerHTML = `
         <svg viewBox="0 0 24 24">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -218,7 +218,6 @@ export class ToolbarController {
       this.pageInput.value = pageIndex;
     }
     if (this.pageTotalEl) {
-      // 0. Sayfa Kapak olduğu için toplam sayfa gösterimi: / 7
       this.pageTotalEl.textContent = `/ ${totalPages - 1}`;
     }
   }
@@ -250,17 +249,22 @@ export class ToolbarController {
     if (!this.drawerBodyEl) return;
     this.drawerBodyEl.innerHTML = '';
 
+    const lastIndex = pagesData.length - 1;
+
     pagesData.forEach((page, index) => {
       const card = document.createElement('div');
       card.className = `thumb-card ${index === 0 ? 'active' : ''}`;
       card.dataset.pageIndex = index;
 
-      const pageLabel = page.pageNum === 0 ? 'Sayfa 0 (Kapak)' : `Sayfa ${page.pageNum}`;
+      let pageLabel = `Sayfa ${page.pageNum}`;
+      if (index === 0) pageLabel = 'Ön Kapak';
+      else if (index === lastIndex) pageLabel = 'Arka Kapak';
+
       const topicText = page.topic || `Bölüm ${page.pageNum}`;
 
       card.innerHTML = `
         <div class="thumb-preview">
-          <img src="${page.thumbDataUrl}" alt="${pageLabel}" loading="lazy" style="${page.pageNum === 0 ? 'object-fit: contain; padding: 12px; background: #172751;' : ''}">
+          <img src="${page.thumbDataUrl}" alt="${pageLabel}" loading="lazy" style="${page.isCover ? 'object-fit: contain; padding: 12px; background: #172751;' : ''}">
         </div>
         <div class="thumb-meta">
           <span class="thumb-label">${pageLabel}</span>

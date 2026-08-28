@@ -1,5 +1,5 @@
 /**
- * Main Application Orchestrator - ABU Student Handbook Flipbook
+ * Main Application Orchestrator - ABU Student Catalog Flipbook
  */
 
 import { PdfLoader } from './pdf-loader.js';
@@ -40,7 +40,7 @@ class App {
 
       const pdfData = await this.pdfLoader.load();
 
-      // 3. Sayfa 0 (Kapak & Video Penceresi) + PDF Sayfaları DOM'unu Üret
+      // 3. Ön Kapak (Sayfa 0) + PDF Sayfaları (1-7) + Arka Kapak (Sayfa 8) DOM'unu Üret
       const allPagesData = this.buildAllPagesDOM(pdfData.pages);
 
       // 4. StPageFlip motorunu başlat
@@ -76,7 +76,7 @@ class App {
 
     const allPages = [];
 
-    // --- SAYFA 0: KAPAK & PENCERE ŞEKLİNDE VİDEO OYNATICI ---
+    // --- 1. ÖN KAPAK (SAYFA 0): VİDEO PENCERESİ VE KATALOG BAŞLIĞI ---
     const coverPageEl = document.createElement('div');
     coverPageEl.className = 'page cover-page';
     coverPageEl.dataset.pageNumber = '0';
@@ -85,19 +85,18 @@ class App {
       <div class="cover-content">
         <div class="cover-header">
           <div class="cover-logo-row">
-            <img src="./assets/images/abu_crest_512.png" alt="Arma" class="cover-crest">
+            <img src="./assets/images/abu_crest_512.png" alt="Antalya Bilim Üniversitesi Arma" class="cover-crest">
             <div>
               <div class="cover-uni-title">ANTALYA BİLİM ÜNİVERSİTESİ</div>
-              <div class="cover-dept-title">Bilgi İşlem Daire Başkanlığı</div>
             </div>
           </div>
           <div class="cover-main-heading">
-            <h1 class="cover-handbook-title">Öğrenci Başlangıç El Kitabı</h1>
+            <h1 class="cover-handbook-title">Öğrenci Kataloğu</h1>
             <span class="cover-badge-tag">Dijital Rehber & Video Anlatım</span>
           </div>
         </div>
 
-        <!-- Video Penceresi -->
+        <!-- Pencere Şeklinde Video Oynatıcı -->
         <div class="cover-video-window">
           <div class="window-header">
             <div class="window-controls">
@@ -109,7 +108,7 @@ class App {
               <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <span>Rehber Video Oynatıcı</span>
             </div>
-            <button class="window-expand-btn" id="cover-video-expand-btn" title="Büyük Ekranda Aç" aria-label="Büyüt">
+            <button class="window-expand-btn" id="cover-video-expand-btn" data-tooltip="Büyük Ekranda Aç" aria-label="Büyüt">
               <svg viewBox="0 0 24 24">
                 <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
               </svg>
@@ -127,7 +126,7 @@ class App {
 
         <!-- Kapak Alt Bilgi -->
         <div class="cover-footer">
-          <span>Akademik Bilgi Sistemleri</span>
+          <span>Akademik Bilgi Portalları</span>
           <div class="cover-guide-text">
             <span>Sayfayı Çevirin</span>
             <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -136,7 +135,7 @@ class App {
       </div>
     `;
 
-    // Expand butonunu modal yöneticisine bağla
+    // Expand butonunu modal oynatıcıya bağla
     const expandBtn = coverPageEl.querySelector('#cover-video-expand-btn');
     if (expandBtn) {
       expandBtn.addEventListener('click', (e) => {
@@ -147,15 +146,14 @@ class App {
 
     this.flipbookContainer.appendChild(coverPageEl);
 
-    // Kapak sayfası verisini listeye ekle
     allPages.push({
       pageNum: 0,
       isCover: true,
       thumbDataUrl: './assets/images/abu_crest_512.png',
-      topic: 'Kapak & Video Penceresi'
+      topic: 'Ön Kapak & Video Penceresi'
     });
 
-    // --- SAYFA 1 - 7: PDF SAYFALARI ---
+    // --- 2. SAYFA 1 - 7: PDF SAYFALARI ---
     pdfPages.forEach((page) => {
       const pageEl = document.createElement('div');
       pageEl.className = 'page';
@@ -184,6 +182,50 @@ class App {
         thumbDataUrl: page.thumbDataUrl,
         topic: this.getTopicForPage(page.pageNum)
       });
+    });
+
+    // --- 3. ARKA KAPAK (SAYFA 8): KÜNYE, LİNK VE HAZIRLAYAN BİLGİSİ ---
+    const backCoverPageEl = document.createElement('div');
+    backCoverPageEl.className = 'page back-cover-page';
+    backCoverPageEl.dataset.pageNumber = `${pdfPages.length + 1}`;
+
+    backCoverPageEl.innerHTML = `
+      <div class="back-cover-content">
+        <div class="back-cover-top">
+          <img src="./assets/images/abu_crest_512.png" alt="Antalya Bilim Üniversitesi" class="back-cover-crest">
+          <h2 class="back-cover-uni-title">ANTALYA BİLİM ÜNİVERSİTESİ</h2>
+          <span class="back-cover-catalog-label">Öğrenci Kataloğu</span>
+        </div>
+
+        <div class="back-cover-center">
+          <a href="https://antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="back-cover-site-box" data-tooltip="Resmi Web Sitesini Ziyaret Et">
+            <span class="site-box-label">Resmi Web Sitesi</span>
+            <span class="site-box-url">
+              <span>antalya.edu.tr</span>
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </span>
+          </a>
+
+          <div class="back-cover-credits">
+            <div class="credits-author-badge">
+              <span>Hazırlayan: Yunus Emre Çelik</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="back-cover-bottom">
+          <p>© Antalya Bilim Üniversitesi • Tüm Hakları Saklıdır.</p>
+        </div>
+      </div>
+    `;
+
+    this.flipbookContainer.appendChild(backCoverPageEl);
+
+    allPages.push({
+      pageNum: pdfPages.length + 1,
+      isCover: true,
+      thumbDataUrl: './assets/images/abu_crest_512.png',
+      topic: 'Arka Kapak & Künye'
     });
 
     return allPages;

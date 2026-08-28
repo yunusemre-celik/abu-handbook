@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Öğrenci Başlangıç El Kitabı | Antalya Bilim Üniversitesi</title>
+  <title>Öğrenci Kataloğu | Antalya Bilim Üniversitesi</title>
   
   <!-- Meta SEO & Branding -->
-  <meta name="description" content="Antalya Bilim Üniversitesi İnteraktif Öğrenci Başlangıç El Kitabı ve Dijital Rehber">
+  <meta name="description" content="Antalya Bilim Üniversitesi İnteraktif Öğrenci Kataloğu ve Dijital Rehber">
   <meta name="theme-color" content="#172751">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 
-  <!-- Google Fonts: Poppins & Open Sans (antalya.edu.tr Official Fonts) -->
+  <!-- Google Fonts: Poppins & Open Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,46 +28,10 @@
 </head>
 <body>
   <div id="app">
-    <!-- 1. Kurumsal Üst Bant (Corporate Topbar) -->
-    <div class="corporate-topbar">
-      <div class="topbar-university-name">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-        </svg>
-        <span>ANTALYA BİLİM ÜNİVERSİTESİ</span>
-      </div>
-      <div class="topbar-links">
-        <a href="https://antalya.edu.tr/tr" target="_blank" rel="noopener noreferrer" class="topbar-link">
-          <span>antalya.edu.tr</span>
-          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-        <a href="https://sis.antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="topbar-link highlight">
-          <span>S.I.S Giriş</span>
-          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-        <a href="https://eders.antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="topbar-link">
-          <span>E-Ders</span>
-          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-        <a href="https://mail.antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="topbar-link">
-          <span>Webmail</span>
-          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-      </div>
-    </div>
-
-    <!-- 2. Ana Başlık Çubuğu (Header) -->
+    <!-- 1. Ortalı Kurumsal Başlık Çubuğu (Centered Navbar) -->
     <header class="app-header">
-      <a href="https://antalya.edu.tr/tr" target="_blank" rel="noopener noreferrer" class="brand">
-        <img src="./assets/images/abu_logo_white.png" alt="Antalya Bilim Üniversitesi" class="brand-logo-img">
-        <div class="brand-divider"></div>
-        <div class="brand-info">
-          <span class="brand-title">Öğrenci Başlangıç El Kitabı</span>
-          <span class="brand-subtitle">Bilgi İşlem Daire Başkanlığı • Dijital Rehber</span>
-        </div>
-      </a>
-      <div class="header-actions">
-        <button id="btn-thumbnails" class="tool-btn" title="İçindekiler ve Sayfalar (T)" aria-label="İçindekiler">
+      <div class="header-left">
+        <button id="btn-thumbnails" class="tool-btn" data-tooltip="İçindekiler ve Sayfalar (T)" aria-label="İçindekiler">
           <svg viewBox="0 0 24 24">
             <rect x="3" y="3" width="7" height="7"></rect>
             <rect x="14" y="3" width="7" height="7"></rect>
@@ -75,7 +39,18 @@
             <rect x="3" y="14" width="7" height="7"></rect>
           </svg>
         </button>
-        <button id="btn-download" class="tool-btn" title="Orijinal PDF El Kitabını İndir" aria-label="PDF İndir">
+      </div>
+
+      <a href="https://antalya.edu.tr/tr" target="_blank" rel="noopener noreferrer" class="header-center">
+        <img src="./assets/images/abu_logo_white.png" alt="Antalya Bilim Üniversitesi" class="brand-logo-img">
+        <div class="brand-info">
+          <span class="brand-title">Antalya Bilim Üniversitesi</span>
+          <span class="brand-subtitle">Öğrenci Kataloğu</span>
+        </div>
+      </a>
+
+      <div class="header-right">
+        <button id="btn-download" class="tool-btn" data-tooltip="PDF Kataloğu İndir" aria-label="PDF İndir">
           <svg viewBox="0 0 24 24">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -85,27 +60,27 @@
       </div>
     </header>
 
-    <!-- 3. Yükleme Ekranı (Loading Screen) -->
+    <!-- 2. Yükleme Ekranı (Loading Screen) -->
     <div id="loading-screen" class="loading-screen">
       <div class="loading-crest">
         <img src="./assets/images/abu_crest_512.png" alt="Antalya Bilim Üniversitesi Arma">
       </div>
       <div class="spinner"></div>
       <div class="loading-title">Antalya Bilim Üniversitesi</div>
-      <div id="loading-text" class="loading-text">El Kitabı Hazırlanıyor...</div>
+      <div id="loading-text" class="loading-text">Katalog Hazırlanıyor...</div>
       <div id="loading-progress" class="loading-progress">%0</div>
     </div>
 
-    <!-- 4. Ana Flipbook Sahnesi (Viewer Stage) -->
+    <!-- 3. Ana Flipbook Sahnesi (Viewer Stage) -->
     <main class="viewer-stage">
       <!-- Kenar Gezinti Okları -->
-      <button class="nav-arrow prev" title="Önceki Sayfa" aria-label="Önceki Sayfa">
+      <button class="nav-arrow prev" data-tooltip="Önceki Sayfa" aria-label="Önceki Sayfa">
         <svg viewBox="0 0 24 24">
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
 
-      <button class="nav-arrow next" title="Sonraki Sayfa" aria-label="Sonraki Sayfa">
+      <button class="nav-arrow next" data-tooltip="Sonraki Sayfa" aria-label="Sonraki Sayfa">
         <svg viewBox="0 0 24 24">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
@@ -117,86 +92,207 @@
           <!-- Sayfalar JavaScript tarafından dinamik olarak yüklenecektir -->
         </div>
       </div>
-    </main>
 
-    <!-- 5. Alt Yüzen Araç Çubuğu (Toolbar) -->
-    <nav class="app-toolbar" aria-label="Kontrol Paneli">
-      <!-- Navigasyon Grubu -->
-      <div class="toolbar-group">
-        <button id="btn-prev" class="tool-btn" title="Önceki Sayfa (Sol Ok / PageUp)" aria-label="Önceki Sayfa">
-          <svg viewBox="0 0 24 24">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
+      <!-- Alt Yüzen Araç Çubuğu (Toolbar) -->
+      <nav class="app-toolbar" aria-label="Kontrol Paneli">
+        <!-- Navigasyon Grubu -->
+        <div class="toolbar-group">
+          <button id="btn-prev" class="tool-btn" data-tooltip="Önceki Sayfa (Sol Ok / PageUp)" aria-label="Önceki Sayfa">
+            <svg viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
 
-        <div class="page-indicator">
-          <input type="number" id="page-input" class="page-input" min="1" max="7" value="1" aria-label="Mevcut Sayfa">
-          <span id="page-total" class="page-total">/ 7</span>
+          <div class="page-indicator">
+            <input type="number" id="page-input" class="page-input" min="0" max="8" value="0" aria-label="Mevcut Sayfa">
+            <span id="page-total" class="page-total">/ 7</span>
+          </div>
+
+          <button id="btn-next" class="tool-btn" data-tooltip="Sonraki Sayfa (Sağ Ok / PageDown)" aria-label="Sonraki Sayfa">
+            <svg viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
 
-        <button id="btn-next" class="tool-btn" title="Sonraki Sayfa (Sağ Ok / PageDown)" aria-label="Sonraki Sayfa">
+        <div class="toolbar-divider"></div>
+
+        <!-- Yakınlaştırma (Zoom) Grubu -->
+        <div class="toolbar-group zoom-controls">
+          <button id="btn-zoom-out" class="tool-btn" data-tooltip="Uzaklaştır (-)" aria-label="Uzaklaştır">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </button>
+
+          <button id="btn-zoom-reset" class="tool-btn" data-tooltip="Varsayılan Boyut (0)" aria-label="Sıfırla">
+            <svg viewBox="0 0 24 24">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            </svg>
+          </button>
+
+          <button id="btn-zoom-in" class="tool-btn" data-tooltip="Yakınlaştır (+)" aria-label="Yakınlaştır">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Ses & Tam Ekran Grubu -->
+        <div class="toolbar-group">
+          <button id="btn-sound" class="tool-btn active" data-tooltip="Sesi Aç/Kapat (M)" aria-label="Sayfa Sesi">
+            <svg viewBox="0 0 24 24">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          </button>
+
+          <button id="btn-fullscreen" class="tool-btn" data-tooltip="Tam Ekran (F)" aria-label="Tam Ekran">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </main>
+
+    <!-- 4. Alt Bento Grid Portalları (Bento Grid Section) -->
+    <section class="bento-portal-section" aria-label="Hızlı Erişim Portalları">
+      <div class="bento-section-header">
+        <h2 class="bento-section-title">
           <svg viewBox="0 0 24 24">
-            <polyline points="9 18 15 12 9 6"></polyline>
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-        </button>
+          <span>Üniversite Bilgi Sistemleri & Portallar</span>
+        </h2>
+        <span class="bento-section-badge">Hızlı Erişim</span>
       </div>
 
-      <div class="toolbar-divider"></div>
+      <div class="bento-grid">
+        <!-- Kart 1: OBS Giriş (Span 6) -->
+        <a href="https://obs.antalya.edu.tr/sign-in" target="_blank" rel="noopener noreferrer" class="bento-card span-6" data-tooltip="Öğrenci Bilgi Sistemine Giriş Yap">
+          <div class="bento-card-top">
+            <div class="bento-icon-wrapper">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <span class="bento-badge obs">OBS Portalı</span>
+          </div>
+          <div class="bento-card-body">
+            <h3>Öğrenci Bilgi Sistemi (OBS)</h3>
+            <p>Ders kayıtları, transkript, not görüntüleme, sınav programı ve akademik danışmanlık işlemleriniz için resmi OBS giriş ekranı.</p>
+          </div>
+          <div class="bento-card-footer">
+            <span>obs.antalya.edu.tr/sign-in</span>
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </a>
 
-      <!-- Yakınlaştırma (Zoom) Grubu -->
-      <div class="toolbar-group zoom-controls">
-        <button id="btn-zoom-out" class="tool-btn" title="Uzaklaştır (-)" aria-label="Uzaklaştır">
-          <svg viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            <line x1="8" y1="11" x2="14" y2="11"></line>
-          </svg>
-        </button>
+        <!-- Kart 2: LMS / E-Ders (Span 6) -->
+        <a href="https://lms.antalya.edu.tr/login/index.php" target="_blank" rel="noopener noreferrer" class="bento-card span-6" data-tooltip="Öğrenim Yönetim Sistemine Git">
+          <div class="bento-card-top">
+            <div class="bento-icon-wrapper">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <span class="bento-badge lms">LMS Portalı</span>
+          </div>
+          <div class="bento-card-body">
+            <h3>Öğretim Yönetim Sistemi (LMS / E-Ders)</h3>
+            <p>Ders materyalleri, çevrim içi canlı ders bağlantıları, ödev yükleme ve sınav etkinlikleri için eğitim platformu.</p>
+          </div>
+          <div class="bento-card-footer">
+            <span>lms.antalya.edu.tr</span>
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </a>
 
-        <button id="btn-zoom-reset" class="tool-btn" title="Varsayılan Boyut (0)" aria-label="Sıfırla">
-          <svg viewBox="0 0 24 24">
-            <polyline points="1 4 1 10 7 10"></polyline>
-            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-          </svg>
-        </button>
+        <!-- Kart 3: Office 365 Webmail (Span 4) -->
+        <a href="https://mail.antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="bento-card span-4" data-tooltip="Öğrenci E-Postanıza Erişin">
+          <div class="bento-card-top">
+            <div class="bento-icon-wrapper">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <span class="bento-badge mail">Office 365</span>
+          </div>
+          <div class="bento-card-body">
+            <h3>Öğrenci Webmail</h3>
+            <p>Üniversite kurumsal e-posta kutunuz ve Office 365 bulut uygulamaları.</p>
+          </div>
+          <div class="bento-card-footer">
+            <span>mail.antalya.edu.tr</span>
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </a>
 
-        <button id="btn-zoom-in" class="tool-btn" title="Yakınlaştır (+)" aria-label="Yakınlaştır">
-          <svg viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            <line x1="11" y1="8" x2="11" y2="14"></line>
-            <line x1="8" y1="11" x2="14" y2="11"></line>
-          </svg>
-        </button>
+        <!-- Kart 4: Şifre Yenileme RMP (Span 4) -->
+        <a href="https://rmp.antalya.edu.tr" target="_blank" rel="noopener noreferrer" class="bento-card span-4" data-tooltip="Şifrenizi Güvenle Yenileyin">
+          <div class="bento-card-top">
+            <div class="bento-icon-wrapper">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <span class="bento-badge rmp">RMP Portalı</span>
+          </div>
+          <div class="bento-card-body">
+            <h3>Şifre Yenileme (RMP)</h3>
+            <p>Hesap ve şifre işlemlerinizi self-service olarak güvenle güncelleyin.</p>
+          </div>
+          <div class="bento-card-footer">
+            <span>rmp.antalya.edu.tr</span>
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </a>
+
+        <!-- Kart 5: Ana Web Sitesi (Span 4) -->
+        <a href="https://antalya.edu.tr/tr" target="_blank" rel="noopener noreferrer" class="bento-card span-4" data-tooltip="Üniversite Ana Sayfasına Git">
+          <div class="bento-card-top">
+            <div class="bento-icon-wrapper">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <span class="bento-badge web">Resmi Site</span>
+          </div>
+          <div class="bento-card-body">
+            <h3>Antalya Bilim Üniversitesi</h3>
+            <p>Haberler, akademik takvim, etkinlikler ve duyurular.</p>
+          </div>
+          <div class="bento-card-footer">
+            <span>antalya.edu.tr</span>
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </a>
       </div>
+    </section>
 
-      <div class="toolbar-divider"></div>
-
-      <!-- Ses & Tam Ekran Grubu -->
-      <div class="toolbar-group">
-        <button id="btn-sound" class="tool-btn active" title="Sesi Aç/Kapat (M)" aria-label="Sayfa Sesi">
-          <svg viewBox="0 0 24 24">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          </svg>
-        </button>
-
-        <button id="btn-fullscreen" class="tool-btn" title="Tam Ekran (F)" aria-label="Tam Ekran">
-          <svg viewBox="0 0 24 24">
-            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-          </svg>
-        </button>
-      </div>
-    </nav>
-
-    <!-- 6. Yan Sayfa Önizleme Çekmecesi (Thumbnails Drawer) -->
+    <!-- 5. Yan Sayfa Önizleme Çekmecesi (Thumbnails Drawer) -->
     <aside class="thumbnails-drawer" aria-label="İçindekiler ve Sayfalar">
       <div class="drawer-header">
         <div class="drawer-title-group">
           <img src="./assets/images/abu_crest_512.png" alt="Arma" class="drawer-crest">
-          <h3 class="drawer-title">İçindekiler</h3>
+          <h3 class="drawer-title">Katalog İçindekiler</h3>
         </div>
-        <button id="btn-close-drawer" class="tool-btn" title="Kapat" aria-label="Kapat">
+        <button id="btn-close-drawer" class="tool-btn" data-tooltip="Kapat" aria-label="Kapat">
           <svg viewBox="0 0 24 24">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -208,16 +304,16 @@
       </div>
     </aside>
 
-    <!-- 7. YouTube Lightbox / Modal Video Oynatıcı -->
+    <!-- 6. YouTube Lightbox / Modal Video Oynatıcı -->
     <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-video-title">
       <div class="modal-card">
         <div class="modal-header">
           <div class="modal-title-group">
             <img src="./assets/images/abu_crest_512.png" alt="Arma" class="modal-crest-icon">
             <span class="modal-badge">Video</span>
-            <h2 id="modal-video-title" class="modal-title">Kablosuz Ağ Bağlantı Rehberi</h2>
+            <h2 id="modal-video-title" class="modal-title">Antalya Bilim Üniversitesi Rehber Videosu</h2>
           </div>
-          <button id="modal-close-btn" class="modal-close" title="Kapat (ESC)" aria-label="Kapat">
+          <button id="modal-close-btn" class="modal-close" data-tooltip="Kapat (ESC)" aria-label="Kapat">
             <svg viewBox="0 0 24 24">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
