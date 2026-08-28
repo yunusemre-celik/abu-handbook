@@ -13,8 +13,8 @@ export class PdfLoader {
     };
     this.pdfDoc = null;
     this.pagesData = [];
-    this.pageWidth = 0;
-    this.pageHeight = 0;
+    this.pageWidth = 595;
+    this.pageHeight = 842;
   }
 
   async load() {
@@ -26,7 +26,7 @@ export class PdfLoader {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 
       'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-    this.options.onProgress(10, 'PDF el kitabı indiriliyor...');
+    this.options.onProgress(10, 'Katalog yükleniyor...');
 
     const loadingTask = window.pdfjsLib.getDocument({
       url: this.pdfPath,
@@ -55,8 +55,8 @@ export class PdfLoader {
       if (pageNum === 1) {
         // Base dimensions (at scale 1.0)
         const unscaledViewport = page.getViewport({ scale: 1.0 });
-        this.pageWidth = unscaledViewport.width;
-        this.pageHeight = unscaledViewport.height;
+        this.pageWidth = unscaledViewport.width || 595;
+        this.pageHeight = unscaledViewport.height || 842;
       }
 
       // Render Main High-Res Page

@@ -21,22 +21,32 @@ export class FlipbookController {
 
     this.totalPages = pagesData.length;
 
+    // Safe base dimensions (A4 fallback if missing)
+    const safeBaseWidth = (typeof baseWidth === 'number' && baseWidth > 0) ? baseWidth : 595;
+    const safeBaseHeight = (typeof baseHeight === 'number' && baseHeight > 0) ? baseHeight : 842;
+    const aspectRatio = safeBaseWidth / safeBaseHeight;
+
     // Calculate dimensions to fit viewport while keeping PDF aspect ratio
     const stage = document.querySelector('.viewer-stage');
-    const availableWidth = (stage ? stage.clientWidth : window.innerWidth) - 40;
-    const availableHeight = (stage ? stage.clientHeight : window.innerHeight) - 40;
+    const stageWidth = stage && stage.clientWidth > 0 ? stage.clientWidth : window.innerWidth;
+    const stageHeight = stage && stage.clientHeight > 0 ? stage.clientHeight : window.innerHeight;
+
+    const availableWidth = Math.max(300, stageWidth - 30);
+    const availableHeight = Math.max(400, stageHeight - 40);
 
     const isMobile = window.innerWidth <= 768;
-    const aspectRatio = baseWidth / baseHeight;
 
     let singlePageWidth, singlePageHeight;
 
     if (isMobile) {
-      // Single page portrait
-      singlePageHeight = Math.min(availableHeight, availableWidth / aspectRatio);
+      // Single page portrait mode
+      const maxHeight = availableHeight * 0.95;
+      const maxWidth = availableWidth * 0.95;
+
+      singlePageHeight = Math.min(maxHeight, maxWidth / aspectRatio);
       singlePageWidth = singlePageHeight * aspectRatio;
     } else {
-      // Double page spread: 2 pages side-by-side
+      // Double page spread mode: 2 pages side-by-side
       const maxBookWidth = availableWidth * 0.92;
       const maxBookHeight = availableHeight * 0.92;
 
@@ -48,32 +58,41 @@ export class FlipbookController {
         bookHeight = (bookWidth / 2) / aspectRatio;
       }
 
-      singlePageWidth = Math.round(bookWidth / 2);
-      singlePageHeight = Math.round(bookHeight);
+      singlePageWidth = bookWidth / 2;
+      singlePageHeight = bookHeight;
     }
+
+    // Strict safety clamp to ensure positive integers within wide bounds
+    const minW = 100;
+    const maxW = 3000;
+    const minH = 100;
+    const maxH = 3000;
+
+    const finalWidth = Math.max(minW, Math.min(maxW, Math.round(singlePageWidth)));
+    const finalHeight = Math.max(minH, Math.min(maxH, Math.round(singlePageHeight)));
 
     // Initialize StPageFlip
     this.pageFlip = new window.St.PageFlip(this.containerEl, {
-      width: singlePageWidth,
-      height: singlePageHeight,
+      width: finalWidth,
+      height: finalHeight,
       size: 'fixed',
-      minWidth: 300,
-      maxWidth: 1200,
-      minHeight: 400,
-      maxHeight: 1600,
+      minWidth: minW,
+      maxWidth: maxW,
+      minHeight: minH,
+      maxHeight: maxH,
       showCover: true,
-      maxShadowOpacity: 0.5,
+      maxShadowOpacity: 0.4,
       mobileScrollSupport: true,
       usePortrait: isMobile,
       autoSize: true,
       drawShadow: true,
-      flippingTime: 700,
+      flippingTime: 650,
       useMouseEvents: true,
-      swipeDistance: 30
+      swipeDistance: 25
     });
 
     // Load DOM elements
-    const pageElements = document.querySelectorAll('.flipbook-container .page');
+    const pageElements = this.containerEl.querySelectorAll('.page');
     this.pageFlip.loadFromHTML(pageElements);
 
     // Event Listeners
@@ -81,10 +100,6 @@ export class FlipbookController {
       this.currentPage = e.data;
       soundManager.playFlip();
       this.notifyPageChange(this.currentPage);
-    });
-
-    this.pageFlip.on('changeOrientation', (e) => {
-      // Orientation changed (e.g. window resize)
     });
 
     // Initial page notification
